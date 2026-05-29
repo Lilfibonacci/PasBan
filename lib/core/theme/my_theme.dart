@@ -47,7 +47,7 @@ final ThemeData lightTheme = ThemeData(
   drawerTheme: const DrawerThemeData(
     backgroundColor: MyColors.white,
     elevation: 2,
-    width: 250,
+    width: 280,
   ),
 );
 

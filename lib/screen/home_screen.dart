@@ -17,10 +17,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       //drawer
-      drawer: const Drawer(),
+      drawer: MyDrawer(textTheme: textTheme),
 
       //fab
-      floatingActionButton: FloatingActionButton(onPressed: () {}),
+      floatingActionButton: FloatingActionButton(
+        shape: const CircleBorder(),
+        onPressed: () {},
+        child: const Icon(Icons.add, size: 40),
+      ),
 
       //appBar
       appBar: AppBar(title: const Text("PasBan")),
@@ -32,6 +36,126 @@ class _HomeScreenState extends State<HomeScreen> {
           return ItemCardWidget(index: index);
         },
       ),
+    );
+  }
+}
+
+//Drawer
+class MyDrawer extends StatelessWidget {
+  const MyDrawer({super.key, required this.textTheme});
+
+  final TextTheme textTheme;
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: Column(
+        children: [
+          //header
+          UserAccountsDrawerHeader(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+                colors: [MyColors.tomato, MyColors.mistyRose],
+              ),
+            ),
+            currentAccountPicture: const CircleAvatar(
+              backgroundImage: AssetImage("assets/images/pasban.png"),
+            ),
+            accountName: Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Text(
+                "PasBan",
+                style: textTheme.bodyMedium?.copyWith(
+                  fontSize: 16,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            accountEmail: Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Text(
+                "v 1.0.0",
+                style: textTheme.bodyMedium?.copyWith(
+                  fontSize: 12,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+
+          //dark mode tile
+          DrawerTile(
+            icon: Icons.dark_mode_outlined,
+            iconColor: MyColors.salmon,
+            title: Text(
+              "Dark Mode",
+              style: textTheme.bodyMedium?.copyWith(fontSize: 18),
+            ),
+            onTap: () {},
+          ),
+
+          //work tile
+          DrawerTile(
+            icon: Icons.question_mark_rounded,
+            iconColor: MyColors.salmon,
+            title: Text(
+              "How Its Work",
+              style: textTheme.bodyMedium?.copyWith(fontSize: 18),
+            ),
+            onTap: () {},
+          ),
+
+          //about tile
+          DrawerTile(
+            icon: Icons.info,
+            iconColor: MyColors.salmon,
+            title: Text(
+              "About Us",
+              style: textTheme.bodyMedium?.copyWith(fontSize: 18),
+            ),
+            onTap: () {},
+          ),
+
+          const Spacer(),
+
+          Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Text(
+              "Designed With ❤️ By LilFibonacci",
+              style: textTheme.bodyMedium?.copyWith(fontSize: 14),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+//drawer tile
+class DrawerTile extends StatelessWidget {
+  final IconData icon;
+  final Text title;
+  final Color iconColor;
+  final VoidCallback onTap;
+
+  const DrawerTile({
+    required this.onTap,
+    required this.icon,
+    required this.iconColor,
+    required this.title,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      iconColor: iconColor,
+      titleAlignment: ListTileTitleAlignment.center,
+      title: title,
+      leading: Icon(icon),
+      onTap: onTap,
     );
   }
 }
