@@ -48,9 +48,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   Column(
                     crossAxisAlignment: .start,
                     children: [
-                      Text("GitHub", style: textTheme.bodyLarge),
+                      Text("GitHub", style: textTheme.bodyMedium),
                       const SizedBox(height: 8),
-                      Text("33658", style: textTheme.bodyMedium),
+                      Text("33658", style: textTheme.bodyLarge),
                     ],
                   ),
                   const Spacer(),

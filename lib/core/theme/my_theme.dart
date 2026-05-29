@@ -8,7 +8,7 @@ final ThemeData lightTheme = ThemeData(
     backgroundColor: MyColors.white,
     centerTitle: true,
     foregroundColor: MyColors.black,
-    iconTheme: IconThemeData(color: MyColors.black, size: 32),
+    iconTheme: IconThemeData(color: MyColors.black, size: 30),
     titleTextStyle: TextStyle(
       fontFamily: "Cr",
       fontSize: 24,
@@ -23,15 +23,15 @@ final ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
 
   //card theme
-  cardTheme: const CardThemeData(color: MyColors.mistyRose),
+  cardTheme: const CardThemeData(color: MyColors.mistyRose, elevation: 1),
 
   //elevatedButton Theme
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       iconColor: MyColors.white,
-      iconSize: 24,
+      iconSize: 22,
       foregroundColor: MyColors.white,
-      textStyle: const TextStyle(fontFamily: "Cr", fontSize: 20),
+      textStyle: const TextStyle(fontFamily: "Cr", fontSize: 22),
       backgroundColor: MyColors.salmon,
       minimumSize: const Size(double.infinity, 50),
     ),
@@ -39,11 +39,11 @@ final ThemeData lightTheme = ThemeData(
 
   //textTheme
   textTheme: const TextTheme(
-    bodyLarge: TextStyle(fontFamily: "Cr", color: MyColors.black, fontSize: 22),
+    bodyLarge: TextStyle(fontFamily: "Cr", color: MyColors.black, fontSize: 32),
     bodyMedium: TextStyle(
       fontFamily: "Cr",
       color: MyColors.black,
-      fontSize: 32,
+      fontSize: 22,
     ),
   ),
 );

@@ -33,6 +33,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset("assets/images/pasban.png"),
+            const SizedBox(height: 5),
             const SpinKitFoldingCube(color: MyColors.salmon, size: 40.0),
           ],
         ),
