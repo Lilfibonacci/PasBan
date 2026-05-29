@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_authenticator/core/constants/my_colors.dart';
 import 'package:flutter_authenticator/screen/home_screen.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
@@ -25,11 +26,15 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [SpinKitFoldingCube(color: Colors.blueGrey, size: 50.0)],
+          children: [
+            Image.asset("assets/images/pasban.png"),
+            const SpinKitFoldingCube(color: MyColors.salmon, size: 40.0),
+          ],
         ),
       ),
     );
