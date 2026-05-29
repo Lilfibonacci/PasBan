@@ -1,0 +1,122 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_authenticator/core/constants/my_colors.dart';
+import 'package:flutter_authenticator/core/util/url_launcher.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+class AboutScreen extends StatelessWidget {
+  const AboutScreen({super.key});
+
+  static String get routeName => "/AboutScreen";
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
+    return Scaffold(
+      // appBar
+      appBar: AppBar(
+        title: const Text("PasBan"),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_outlined, size: 22),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
+
+      // body
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 40),
+            // logo
+            const CircleAvatar(
+              radius: 75,
+              backgroundImage: AssetImage("assets/images/pasban.png"),
+            ),
+            const SizedBox(height: 24),
+
+            // description
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32.0),
+              child: Text(
+                "Your trusted, cross-platform companion for secure and effortless two-factor authentication.",
+                textAlign: TextAlign.center,
+                style: textTheme.bodyMedium?.copyWith(
+                  fontSize: 18,
+                  height: 1.5,
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 40),
+
+            // social box
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                decoration: const BoxDecoration(
+                  color: MyColors.mistyRose,
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ListTile(
+                      leading: const FaIcon(FontAwesomeIcons.github),
+                      title: Text("Source Code", style: textTheme.bodyMedium),
+                      trailing: const FaIcon(
+                        FontAwesomeIcons.arrowUpRightFromSquare,
+                        size: 18,
+                      ),
+                      onTap: () {
+                        urlLauncher("https://github.com/Lilfibonacci/PasBan");
+                      },
+                    ),
+                    const Divider(
+                      height: 1,
+                      indent: 20,
+                      endIndent: 20,
+                      color: Colors.black26,
+                    ),
+                    ListTile(
+                      leading: const FaIcon(FontAwesomeIcons.envelope),
+                      title: Text("Email", style: textTheme.bodyMedium),
+                      trailing: const FaIcon(
+                        FontAwesomeIcons.arrowUpRightFromSquare,
+                        size: 18,
+                      ),
+                      onTap: () {
+                        urlLauncher("mailto:lilfibonacci1@gmail.com");
+                      },
+                    ),
+                    const Divider(
+                      height: 1,
+                      indent: 20,
+                      endIndent: 20,
+                      color: Colors.black26,
+                    ),
+                    ListTile(
+                      leading: const FaIcon(FontAwesomeIcons.telegram),
+                      title: Text("Telegram", style: textTheme.bodyMedium),
+                      trailing: const FaIcon(
+                        FontAwesomeIcons.arrowUpRightFromSquare,
+                        size: 18,
+                      ),
+                      onTap: () {
+                        urlLauncher("https://t.me/Lilfibonacci");
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 40),
+          ],
+        ),
+      ),
+    );
+  }
+}
