@@ -7,4 +7,24 @@ class MyColors {
   static const Color black = Color(0xff000000);
   static const Color mistyRose = Color(0xffFFAB91);
   static const Color tomato = Color(0xffFF6347);
+
+  static const List<MaterialColor> cardColorsList = [
+    Colors.red,
+    Colors.pink,
+    Colors.purple,
+    Colors.deepPurple,
+    Colors.indigo,
+    Colors.blue,
+    Colors.lightBlue,
+    Colors.cyan,
+    Colors.teal,
+    Colors.green,
+    Colors.lightGreen,
+    Colors.lime,
+    Colors.yellow,
+    Colors.amber,
+    Colors.orange,
+    Colors.deepOrange,
+    Colors.brown,
+  ];
 }

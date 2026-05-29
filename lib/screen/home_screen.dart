@@ -16,27 +16,44 @@ class _HomeScreenState extends State<HomeScreen> {
     final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      //drawer
+      drawer: const Drawer(),
+
+      //fab
       floatingActionButton: FloatingActionButton(onPressed: () {}),
 
       //appBar
-      appBar: myAppBar(),
+      appBar: AppBar(title: const Text("PasBan")),
 
       //body
       body: ListView.builder(
-        itemCount: 5,
+        itemCount: 15,
         itemBuilder: (context, index) {
-          return itemCard(textTheme);
+          return ItemCardWidget(index: index);
         },
       ),
     );
   }
+}
 
-  //itemCard
-  Widget itemCard(TextTheme textTheme) {
+//itemCard
+class ItemCardWidget extends StatelessWidget {
+  final int index;
+
+  const ItemCardWidget({super.key, required this.index});
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
+    final cardColor = MyColors.cardColorsList.reversed
+        .toList()[index % MyColors.cardColorsList.length]
+        .shade400;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
       child: Card(
+        color: cardColor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -44,9 +61,8 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.all(16.0),
               child: Row(
                 children: [
-                  //Totp code
                   Column(
-                    crossAxisAlignment: .start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("GitHub", style: textTheme.bodyMedium),
                       const SizedBox(height: 8),
@@ -54,24 +70,27 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   const Spacer(),
-
-                  //progress Indicator
                   Container(
                     height: 50,
                     width: 50,
-                    decoration: const BoxDecoration(
-                      color: MyColors.tomato,
+                    decoration: BoxDecoration(
+                      color: MyColors.cardColorsList.reversed
+                          .toList()[index % MyColors.cardColorsList.length]
+                          .shade700,
                       shape: BoxShape.circle,
                     ),
                   ),
                 ],
               ),
             ),
-
-            //copy Button
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: MyColors.cardColorsList.reversed
+                      .toList()[index % MyColors.cardColorsList.length]
+                      .withValues(alpha: 0.3),
+                ),
                 onPressed: () {},
                 label: const Text('Copy'),
                 icon: const Icon(Icons.copy),
@@ -80,14 +99,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-    );
-  }
-
-  //appBar
-  PreferredSizeWidget myAppBar() {
-    return AppBar(
-      title: const Text("PasBan"),
-      leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
     );
   }
 }

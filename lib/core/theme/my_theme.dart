@@ -22,9 +22,6 @@ final ThemeData lightTheme = ThemeData(
   //light mode
   brightness: Brightness.light,
 
-  //card theme
-  cardTheme: const CardThemeData(color: MyColors.mistyRose, elevation: 1),
-
   //elevatedButton Theme
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
@@ -32,7 +29,6 @@ final ThemeData lightTheme = ThemeData(
       iconSize: 22,
       foregroundColor: MyColors.white,
       textStyle: const TextStyle(fontFamily: "Cr", fontSize: 22),
-      backgroundColor: MyColors.salmon,
       minimumSize: const Size(double.infinity, 50),
     ),
   ),
@@ -45,6 +41,13 @@ final ThemeData lightTheme = ThemeData(
       color: MyColors.black,
       fontSize: 22,
     ),
+  ),
+
+  //Drawer Theme
+  drawerTheme: const DrawerThemeData(
+    backgroundColor: MyColors.white,
+    elevation: 2,
+    width: 250,
   ),
 );
 
