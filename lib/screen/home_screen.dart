@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_authenticator/core/constants/my_colors.dart';
+import 'package:flutter_authenticator/screen/about_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -31,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
       //body
       body: ListView.builder(
-        itemCount: 15,
+        itemCount: 5,
         itemBuilder: (context, index) {
           return ItemCardWidget(index: index);
         },
@@ -42,9 +44,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
 //Drawer
 class MyDrawer extends StatelessWidget {
-  const MyDrawer({super.key, required this.textTheme});
-
   final TextTheme textTheme;
+
+  const MyDrawer({super.key, required this.textTheme});
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +117,9 @@ class MyDrawer extends StatelessWidget {
               "About Us",
               style: textTheme.bodyMedium?.copyWith(fontSize: 18),
             ),
-            onTap: () {},
+            onTap: () {
+              context.pushNamed(AboutScreen.routeName);
+            },
           ),
 
           const Spacer(),
@@ -123,7 +127,7 @@ class MyDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(24.0),
             child: Text(
-              "Designed With ❤️ By LilFibonacci",
+              "Designed with ❤️ by LilFibonacci",
               style: textTheme.bodyMedium?.copyWith(fontSize: 14),
             ),
           ),
