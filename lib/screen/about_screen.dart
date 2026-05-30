@@ -24,19 +24,26 @@ class AboutScreen extends StatelessWidget {
       ),
 
       // body
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 40),
-            // logo
-            const CircleAvatar(
-              radius: 75,
-              backgroundImage: AssetImage("assets/images/pasban.png"),
-            ),
-            const SizedBox(height: 24),
+      body: CustomScrollView(
+        slivers: [
+          const SliverToBoxAdapter(child: SizedBox(height: 40)),
 
-            // description
-            Padding(
+          // logo
+          SliverToBoxAdapter(
+            child: Transform.scale(
+              scale: 0.7,
+              child: const CircleAvatar(
+                radius: 95,
+                backgroundImage: AssetImage("assets/images/pasban.png"),
+              ),
+            ),
+          ),
+
+          const SliverToBoxAdapter(child: SizedBox(height: 12)),
+
+          // description
+          SliverToBoxAdapter(
+            child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32.0),
               child: Text(
                 "Your trusted, cross-platform companion for secure and effortless two-factor authentication.",
@@ -47,11 +54,13 @@ class AboutScreen extends StatelessWidget {
                 ),
               ),
             ),
+          ),
 
-            const SizedBox(height: 40),
+          const SliverToBoxAdapter(child: SizedBox(height: 40)),
 
-            // social box
-            Padding(
+          // social box
+          SliverToBoxAdapter(
+            child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: Container(
                 width: double.infinity,
@@ -112,10 +121,22 @@ class AboutScreen extends StatelessWidget {
                 ),
               ),
             ),
+          ),
 
-            const SizedBox(height: 40),
-          ],
-        ),
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Text(
+                  "Designed with ❤️ by LilFibonacci",
+                  style: textTheme.bodyMedium?.copyWith(fontSize: 14),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

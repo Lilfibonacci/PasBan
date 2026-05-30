@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_authenticator/core/constants/my_colors.dart';
 import 'package:flutter_authenticator/screen/about_screen.dart';
+import 'package:flutter_authenticator/widget/custom_switch.dart';
 import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -89,6 +90,7 @@ class MyDrawer extends StatelessWidget {
 
           //dark mode tile
           DrawerTile(
+            // trailling: CustomSwitchWidget(),
             icon: Icons.dark_mode_outlined,
             iconColor: MyColors.salmon,
             title: Text(
@@ -122,14 +124,15 @@ class MyDrawer extends StatelessWidget {
             },
           ),
 
-          const Spacer(),
-
-          Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Text(
-              "Designed with ❤️ by LilFibonacci",
-              style: textTheme.bodyMedium?.copyWith(fontSize: 14),
+          //language tile
+          DrawerTile(
+            icon: Icons.language,
+            iconColor: MyColors.salmon,
+            title: Text(
+              "language",
+              style: textTheme.bodyMedium?.copyWith(fontSize: 18),
             ),
+            onTap: () {},
           ),
         ],
       ),
@@ -143,8 +146,10 @@ class DrawerTile extends StatelessWidget {
   final Text title;
   final Color iconColor;
   final VoidCallback onTap;
+  final Widget? trailling;
 
   const DrawerTile({
+    this.trailling,
     required this.onTap,
     required this.icon,
     required this.iconColor,
@@ -160,6 +165,7 @@ class DrawerTile extends StatelessWidget {
       title: title,
       leading: Icon(icon),
       onTap: onTap,
+      trailing: trailling,
     );
   }
 }
