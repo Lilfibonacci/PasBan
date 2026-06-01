@@ -1,0 +1,41 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for English (`en`).
+class AppLocalizationsEn extends AppLocalizations {
+  AppLocalizationsEn([String locale = 'en']) : super(locale);
+
+  @override
+  String get title => 'PasBan';
+
+  @override
+  String get button => 'Copy';
+
+  @override
+  String get darkModeTle => 'Dark Mode';
+
+  @override
+  String get workTile => 'How Its Work';
+
+  @override
+  String get aboutUsTile => 'About Us';
+
+  @override
+  String get laguage => 'Language';
+
+  @override
+  String get sourceTile => 'Source Code';
+
+  @override
+  String get emailTile => 'Email';
+
+  @override
+  String get telegramTile => 'Telegram';
+
+  @override
+  String get describtion =>
+      'Your trusted, cross-platform companion for secure and effortless two-factor authentication.';
+}

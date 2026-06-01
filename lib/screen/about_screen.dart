@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_authenticator/core/constants/my_colors.dart';
 import 'package:flutter_authenticator/core/util/url_launcher.dart';
+import 'package:flutter_authenticator/l10n/app_localizations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AboutScreen extends StatelessWidget {
@@ -12,11 +13,12 @@ class AboutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       // appBar
       appBar: AppBar(
-        title: const Text("PasBan"),
+        title: Text(l10n.title),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_outlined, size: 22),
           onPressed: () => Navigator.of(context).pop(),
@@ -46,7 +48,7 @@ class AboutScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32.0),
               child: Text(
-                "Your trusted, cross-platform companion for secure and effortless two-factor authentication.",
+                l10n.describtion,
                 textAlign: TextAlign.center,
                 style: textTheme.bodyMedium?.copyWith(
                   fontSize: 18,
@@ -79,7 +81,7 @@ class AboutScreen extends StatelessWidget {
                         color: isDark ? MyColors.black : MyColors.white,
                       ),
                       title: Text(
-                        "Source Code",
+                        l10n.sourceTile,
                         style: textTheme.bodyMedium?.copyWith(
                           color: isDark ? MyColors.black : MyColors.white,
                         ),
@@ -107,7 +109,7 @@ class AboutScreen extends StatelessWidget {
                         color: isDark ? MyColors.black : MyColors.white,
                       ),
                       title: Text(
-                        "Email",
+                        l10n.emailTile,
                         style: textTheme.bodyMedium?.copyWith(
                           color: isDark ? MyColors.black : MyColors.white,
                         ),
@@ -135,7 +137,7 @@ class AboutScreen extends StatelessWidget {
                         color: isDark ? MyColors.black : MyColors.white,
                       ),
                       title: Text(
-                        "Telegram",
+                        l10n.telegramTile,
                         style: textTheme.bodyMedium?.copyWith(
                           color: isDark ? MyColors.black : MyColors.white,
                         ),

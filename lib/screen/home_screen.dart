@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_authenticator/bloc/theme/theme_bloc.dart';
 import 'package:flutter_authenticator/bloc/theme/theme_event.dart';
 import 'package:flutter_authenticator/core/constants/my_colors.dart';
+import 'package:flutter_authenticator/l10n/app_localizations.dart';
 import 'package:flutter_authenticator/screen/about_screen.dart';
 import 'package:flutter_authenticator/widget/custom_switch.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,10 +22,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       //drawer
-      drawer: MyDrawer(textTheme: textTheme, isDark: isDark),
+      drawer: MyDrawer(textTheme: textTheme, isDark: isDark, l10n: l10n),
 
       //fab
       floatingActionButton: FloatingActionButton(
@@ -34,13 +36,13 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
 
       //appBar
-      appBar: AppBar(title: const Text("PasBan")),
+      appBar: AppBar(title: Text(l10n.title)),
 
       //body
       body: ListView.builder(
         itemCount: 5,
         itemBuilder: (context, index) {
-          return ItemCardWidget(index: index);
+          return ItemCardWidget(index: index, l10n: l10n);
         },
       ),
     );
@@ -51,8 +53,14 @@ class _HomeScreenState extends State<HomeScreen> {
 class MyDrawer extends StatelessWidget {
   final TextTheme textTheme;
   final bool isDark;
+  final AppLocalizations l10n;
 
-  const MyDrawer({super.key, required this.textTheme, required this.isDark});
+  const MyDrawer({
+    super.key,
+    required this.textTheme,
+    required this.isDark,
+    required this.l10n,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +82,7 @@ class MyDrawer extends StatelessWidget {
             accountName: Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: Text(
-                "PasBan",
+                l10n.title,
                 style: textTheme.bodyMedium?.copyWith(
                   fontSize: 16,
                   color: Colors.white,
@@ -107,7 +115,7 @@ class MyDrawer extends StatelessWidget {
             icon: isDark ? Icons.dark_mode_outlined : Icons.light_mode,
             iconColor: MyColors.salmon,
             title: Text(
-              "Dark Mode",
+              l10n.darkModeTle,
               style: textTheme.bodyMedium?.copyWith(fontSize: 18),
             ),
             onTap: () {},
@@ -118,7 +126,7 @@ class MyDrawer extends StatelessWidget {
             icon: Icons.question_mark_rounded,
             iconColor: MyColors.salmon,
             title: Text(
-              "How Its Work",
+              l10n.workTile,
               style: textTheme.bodyMedium?.copyWith(fontSize: 18),
             ),
             onTap: () {},
@@ -129,7 +137,7 @@ class MyDrawer extends StatelessWidget {
             icon: Icons.info,
             iconColor: MyColors.salmon,
             title: Text(
-              "About Us",
+              l10n.aboutUsTile,
               style: textTheme.bodyMedium?.copyWith(fontSize: 18),
             ),
             onTap: () {
@@ -142,7 +150,7 @@ class MyDrawer extends StatelessWidget {
             icon: Icons.language,
             iconColor: MyColors.salmon,
             title: Text(
-              "language",
+              l10n.laguage,
               style: textTheme.bodyMedium?.copyWith(fontSize: 18),
             ),
             onTap: () {},
@@ -186,8 +194,9 @@ class DrawerTile extends StatelessWidget {
 //itemCard
 class ItemCardWidget extends StatelessWidget {
   final int index;
+  final AppLocalizations l10n;
 
-  const ItemCardWidget({super.key, required this.index});
+  const ItemCardWidget({super.key, required this.index, required this.l10n});
 
   @override
   Widget build(BuildContext context) {
@@ -239,7 +248,7 @@ class ItemCardWidget extends StatelessWidget {
                       .withValues(alpha: 0.3),
                 ),
                 onPressed: () {},
-                label: const Text('Copy'),
+                label: Text(l10n.button),
                 icon: const Icon(Icons.copy),
               ),
             ),
