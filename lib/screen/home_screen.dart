@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_authenticator/bloc/localization/localization_bloc.dart';
+import 'package:flutter_authenticator/bloc/localization/localization_event.dart';
+import 'package:flutter_authenticator/bloc/localization/localization_state.dart';
 import 'package:flutter_authenticator/bloc/theme/theme_bloc.dart';
 import 'package:flutter_authenticator/bloc/theme/theme_event.dart';
 import 'package:flutter_authenticator/core/constants/my_colors.dart';
@@ -146,14 +149,47 @@ class MyDrawer extends StatelessWidget {
           ),
 
           //language tile
-          DrawerTile(
-            icon: Icons.language,
-            iconColor: MyColors.salmon,
-            title: Text(
-              l10n.laguage,
-              style: textTheme.bodyMedium?.copyWith(fontSize: 18),
-            ),
-            onTap: () {},
+          BlocBuilder<LocalizationBloc, LocalizationState>(
+            builder: (context, state) {
+              return DrawerTile(
+                icon: Icons.language,
+                iconColor: MyColors.salmon,
+                title: Text(
+                  l10n.laguage,
+                  style: textTheme.bodyMedium?.copyWith(fontSize: 18),
+                ),
+                onTap: () {},
+                trailling: DropdownButton<String>(
+                  // دریافت زبان فعلی از استیت BLoC
+                  value: state.locale.languageCode,
+
+                  // حذف خط زیرین پیش‌فرض دراپ‌داون برای زیبایی بیشتر
+                  underline: const SizedBox(),
+
+                  // تنظیم رنگ پس‌زمینه دراپ‌داون بر اساس تم دارک/لایت
+                  dropdownColor: isDark ? Colors.grey[900] : Colors.white,
+                  elevation: 6,
+                  borderRadius: const BorderRadius.all(Radius.circular(16)),
+
+                  // آیتم‌های زبان
+                  items: const [
+                    DropdownMenuItem(
+                      value: "fa",
+                      child: Text("فارسی", style: TextStyle(fontFamily: 'cr')),
+                    ),
+                    DropdownMenuItem(value: "en", child: Text("English")),
+                  ],
+
+                  // هندل کردن تغییر زبان
+                  onChanged: (String? newValue) {
+                    if (newValue != null &&
+                        newValue != state.locale.languageCode) {
+                      context.read<LocalizationBloc>().add(ChangeLocaleEvent());
+                    }
+                  },
+                ),
+              );
+            },
           ),
         ],
       ),

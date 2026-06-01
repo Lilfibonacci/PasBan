@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_authenticator/bloc/localization/localization_bloc.dart';
+import 'package:flutter_authenticator/bloc/localization/localization_event.dart'; // اضافه شدن ایمپورت ایونت
+import 'package:flutter_authenticator/bloc/localization/localization_state.dart'; // اضافه شدن ایمپورت استیت زبان
 import 'package:flutter_authenticator/bloc/theme/theme_bloc.dart';
+import 'package:flutter_authenticator/bloc/theme/theme_event.dart';
 import 'package:flutter_authenticator/bloc/theme/theme_state.dart';
 import 'package:flutter_authenticator/core/di/di.dart';
 import 'package:flutter_authenticator/core/routing/routing.dart';
@@ -13,8 +17,16 @@ void main() async {
   await getItInit();
 
   runApp(
-    BlocProvider<ThemeBloc>(
-      create: (context) => ThemeBloc(locator.get()),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ThemeBloc(locator.get())..add(LoadThemeEvent()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              LocalizationBloc(locator.get())..add(LoadLocalEvent()),
+        ),
+      ],
       child: const MyApp(),
     ),
   );
@@ -25,21 +37,29 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // بیلد کردن بر اساس تم
     return BlocBuilder<ThemeBloc, ThemeState>(
-      builder: (context, state) => MaterialApp.router(
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
+      builder: (context, themeState) {
+        // بیلد کردن بر اساس زبان
+        return BlocBuilder<LocalizationBloc, LocalizationState>(
+          builder: (context, localizationState) {
+            return MaterialApp.router(
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
 
-        supportedLocales: AppLocalizations.supportedLocales,
+              // مقداردهی داینامیک زبان از طریق استیتِ BLoC
+              locale: localizationState.locale,
 
-        locale: const Locale('fa'),
-
-        debugShowCheckedModeBanner: false,
-        title: "PasBan",
-        routerConfig: appGlobalRouter,
-        theme: lightTheme,
-        darkTheme: darkTheme,
-        themeMode: state.themeMode,
-      ),
+              debugShowCheckedModeBanner: false,
+              title: "PasBan",
+              routerConfig: appGlobalRouter,
+              theme: lightTheme,
+              darkTheme: darkTheme,
+              themeMode: themeState.themeMode,
+            );
+          },
+        );
+      },
     );
   }
 }
