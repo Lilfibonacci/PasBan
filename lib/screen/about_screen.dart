@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_authenticator/core/constants/my_colors.dart';
 import 'package:flutter_authenticator/core/util/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -12,6 +11,7 @@ class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
       // appBar
@@ -72,12 +72,22 @@ class AboutScreen extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    //github tile
                     ListTile(
-                      leading: const FaIcon(FontAwesomeIcons.github),
-                      title: Text("Source Code", style: textTheme.bodyMedium),
-                      trailing: const FaIcon(
+                      leading: FaIcon(
+                        FontAwesomeIcons.github,
+                        color: isDark ? MyColors.black : MyColors.white,
+                      ),
+                      title: Text(
+                        "Source Code",
+                        style: textTheme.bodyMedium?.copyWith(
+                          color: isDark ? MyColors.black : MyColors.white,
+                        ),
+                      ),
+                      trailing: FaIcon(
                         FontAwesomeIcons.arrowUpRightFromSquare,
                         size: 18,
+                        color: isDark ? MyColors.black : MyColors.white,
                       ),
                       onTap: () {
                         urlLauncher("https://github.com/Lilfibonacci/PasBan");
@@ -89,12 +99,23 @@ class AboutScreen extends StatelessWidget {
                       endIndent: 20,
                       color: Colors.black26,
                     ),
+
+                    //email tile
                     ListTile(
-                      leading: const FaIcon(FontAwesomeIcons.envelope),
-                      title: Text("Email", style: textTheme.bodyMedium),
-                      trailing: const FaIcon(
+                      leading: FaIcon(
+                        FontAwesomeIcons.envelope,
+                        color: isDark ? MyColors.black : MyColors.white,
+                      ),
+                      title: Text(
+                        "Email",
+                        style: textTheme.bodyMedium?.copyWith(
+                          color: isDark ? MyColors.black : MyColors.white,
+                        ),
+                      ),
+                      trailing: FaIcon(
                         FontAwesomeIcons.arrowUpRightFromSquare,
                         size: 18,
+                        color: isDark ? MyColors.black : MyColors.white,
                       ),
                       onTap: () {
                         urlLauncher("mailto:lilfibonacci1@gmail.com");
@@ -106,12 +127,23 @@ class AboutScreen extends StatelessWidget {
                       endIndent: 20,
                       color: Colors.black26,
                     ),
+
+                    //telegram tile
                     ListTile(
-                      leading: const FaIcon(FontAwesomeIcons.telegram),
-                      title: Text("Telegram", style: textTheme.bodyMedium),
-                      trailing: const FaIcon(
+                      leading: FaIcon(
+                        FontAwesomeIcons.telegram,
+                        color: isDark ? MyColors.black : MyColors.white,
+                      ),
+                      title: Text(
+                        "Telegram",
+                        style: textTheme.bodyMedium?.copyWith(
+                          color: isDark ? MyColors.black : MyColors.white,
+                        ),
+                      ),
+                      trailing: FaIcon(
                         FontAwesomeIcons.arrowUpRightFromSquare,
                         size: 18,
+                        color: isDark ? MyColors.black : MyColors.white,
                       ),
                       onTap: () {
                         urlLauncher("https://t.me/Lilfibonacci");

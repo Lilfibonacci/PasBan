@@ -1,9 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_authenticator/bloc/theme/theme_bloc.dart';
+import 'package:flutter_authenticator/bloc/theme/theme_state.dart';
+import 'package:flutter_authenticator/core/di/di.dart';
 import 'package:flutter_authenticator/core/routing/routing.dart';
 import 'package:flutter_authenticator/core/theme/my_theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await getItInit();
+
+  runApp(
+    BlocProvider<ThemeBloc>(
+      create: (context) => ThemeBloc(locator.get()),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -11,11 +24,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      title: "PasBan",
-      routerConfig: appGlobalRouter,
-      theme: lightTheme,
+    return BlocBuilder<ThemeBloc, ThemeState>(
+      builder: (context, state) => MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        title: "PasBan",
+        routerConfig: appGlobalRouter,
+        theme: lightTheme,
+        darkTheme: darkTheme,
+        themeMode: state.themeMode,
+      ),
     );
   }
 }

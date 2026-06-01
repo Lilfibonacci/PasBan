@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_authenticator/bloc/theme/theme_bloc.dart';
+import 'package:flutter_authenticator/bloc/theme/theme_event.dart';
 import 'package:flutter_authenticator/core/constants/my_colors.dart';
 import 'package:flutter_authenticator/screen/about_screen.dart';
 import 'package:flutter_authenticator/widget/custom_switch.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,10 +20,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
       //drawer
-      drawer: MyDrawer(textTheme: textTheme),
+      drawer: MyDrawer(textTheme: textTheme, isDark: isDark),
 
       //fab
       floatingActionButton: FloatingActionButton(
@@ -46,8 +50,9 @@ class _HomeScreenState extends State<HomeScreen> {
 //Drawer
 class MyDrawer extends StatelessWidget {
   final TextTheme textTheme;
+  final bool isDark;
 
-  const MyDrawer({super.key, required this.textTheme});
+  const MyDrawer({super.key, required this.textTheme, required this.isDark});
 
   @override
   Widget build(BuildContext context) {
@@ -90,8 +95,16 @@ class MyDrawer extends StatelessWidget {
 
           //dark mode tile
           DrawerTile(
-            // trailling: CustomSwitchWidget(),
-            icon: Icons.dark_mode_outlined,
+            trailling: Transform.scale(
+              scale: 0.7,
+              child: CustomSwitchWidget(
+                isDarkMode: isDark,
+                onChanged: (value) {
+                  context.read<ThemeBloc>().add(SwitchThemeEvent());
+                },
+              ),
+            ),
+            icon: isDark ? Icons.dark_mode_outlined : Icons.light_mode,
             iconColor: MyColors.salmon,
             title: Text(
               "Dark Mode",
