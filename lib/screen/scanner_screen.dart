@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_authenticator/core/constants/my_colors.dart';
+import 'package:flutter_authenticator/l10n/app_localizations.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
@@ -22,38 +24,41 @@ class _ScannerScreenState extends State<ScannerScreen> {
     super.dispose();
   }
 
-  Future<void> _scanFromGallery() async {
+  //method for scan image from gallery
+  Future<void> _scanFromGallery(
+    BuildContext context,
+    AppLocalizations l10n,
+  ) async {
     try {
-      // 1. انتخاب عکس از گالری
       final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
 
-      if (image == null) return; // اگر کاربر عکسی انتخاب نکرد و برگشت
+      if (image == null) return;
 
-      // 2. استفاده از اسکنر برای پیدا کردن بارکد در عکس
       final BarcodeCapture? capture = await cameraController.analyzeImage(
         image.path,
       );
 
       if (capture != null && capture.barcodes.isNotEmpty) {
-        // پیدا کردن اولین بارکدی که مقدار دارد
         for (final barcode in capture.barcodes) {
           if (barcode.rawValue != null && !isScanned) {
             isScanned = true;
             final String code = barcode.rawValue!;
             debugPrint('📸 بارکد از گالری خوانده شد: $code');
 
-            // بستن صفحه و ارسال کد به صفحه اصلی
-            if (mounted) {
+            if (context.mounted) {
               Navigator.of(context).pop(code);
             }
             break;
           }
         }
       } else {
-        // اگر عکسی انتخاب شد اما هیچ QR کدی در آن نبود
-        if (mounted) {
+        if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('هیچ بارکدی در این عکس پیدا نشد.')),
+            SnackBar(
+              backgroundColor: MyColors.salmon,
+              duration: const Duration(seconds: 2),
+              content: Text(l10n.snackBar),
+            ),
           );
         }
       }
@@ -64,16 +69,15 @@ class _ScannerScreenState extends State<ScannerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // گرفتن ابعاد صفحه برای محاسبه سایز کادر اسکن
+    final l10n = AppLocalizations.of(context)!;
+
     final scanWindowSize = MediaQuery.of(context).size.width * 0.75;
 
     return Scaffold(
-      backgroundColor: Colors.black,
-      // استفاده از Stack برای قرار دادن لایه‌ها روی هم
+      backgroundColor: MyColors.black,
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // 1. لایه زیرین: دوربین تمام صفحه
           MobileScanner(
             fit: BoxFit.cover,
             controller: cameraController,
@@ -94,10 +98,9 @@ class _ScannerScreenState extends State<ScannerScreen> {
             },
           ),
 
-          // 2. لایه رویی: Overlay نیمه شفاف با یک کادر خالی در وسط
           ColorFiltered(
             colorFilter: ColorFilter.mode(
-              Colors.black.withValues(alpha: 0.7), // رنگ لایه تاریک
+              Colors.black.withValues(alpha: 0.7),
               BlendMode.srcOut,
             ),
             child: Stack(
@@ -109,13 +112,12 @@ class _ScannerScreenState extends State<ScannerScreen> {
                     backgroundBlendMode: BlendMode.dstOut,
                   ),
                 ),
-                // حفره شفاف وسط صفحه
                 Center(
                   child: Container(
                     height: scanWindowSize,
                     width: scanWindowSize,
                     decoration: BoxDecoration(
-                      color: Colors.red, // رنگ مهم نیست، شفاف می‌شود
+                      color: Colors.red,
                       borderRadius: BorderRadius.circular(24),
                     ),
                   ),
@@ -124,7 +126,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
             ),
           ),
 
-          // 3. لبه‌های سفید (Border) دور کادر شفاف
           Center(
             child: Container(
               height: scanWindowSize,
@@ -136,7 +137,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
             ),
           ),
 
-          // 4. دکمه بازگشت در بالا سمت چپ
           Positioned(
             top: 50,
             left: 16,
@@ -146,7 +146,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
             ),
           ),
 
-          // 5. دکمه‌های کنترل (فلش و گالری) در پایین صفحه
           Positioned(
             bottom: 60,
             left: 0,
@@ -154,7 +153,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // دکمه گالری
+                // Gallery Button
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white.withValues(alpha: 0.2),
@@ -164,11 +163,10 @@ class _ScannerScreenState extends State<ScannerScreen> {
                     iconSize: 32,
                     icon: const Icon(Icons.image, color: Colors.white),
                     tooltip: 'انتخاب از گالری',
-                    onPressed: _scanFromGallery,
+                    onPressed: () => _scanFromGallery(context, l10n),
                   ),
                 ),
                 const SizedBox(width: 40),
-                // دکمه فلش
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white.withValues(alpha: 0.2),

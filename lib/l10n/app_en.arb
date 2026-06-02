@@ -8,6 +8,7 @@
   "sourceTile" : "Source Code",
   "emailTile" : "Email",
   "telegramTile" : "Telegram",
-  "describtion" : "Your trusted, cross-platform companion for secure and effortless two-factor authentication."
-  
-  }
+  "describtion" : "Your trusted, cross-platform companion for secure and effortless two-factor authentication.",
+  "scan" : "Scan QR",
+  "snackBar" : "No barcodes were found in this image."  
+}

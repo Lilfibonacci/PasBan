@@ -38,10 +38,11 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         icon: const Icon(Icons.qr_code_scanner_rounded, size: 24),
         label: Text(
-          "Scan QR",
-          style: textTheme.labelLarge?.copyWith(
+          l10n.scan,
+          style: textTheme.bodyMedium?.copyWith(
             fontWeight: FontWeight.bold,
             letterSpacing: 1.2,
+            fontSize: 16,
           ),
         ),
       ),

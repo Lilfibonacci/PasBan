@@ -157,6 +157,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your trusted, cross-platform companion for secure and effortless two-factor authentication.'**
   String get describtion;
+
+  /// No description provided for @scan.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan QR'**
+  String get scan;
+
+  /// No description provided for @snackBar.
+  ///
+  /// In en, this message translates to:
+  /// **'No barcodes were found in this image.'**
+  String get snackBar;
 }
 
 class _AppLocalizationsDelegate

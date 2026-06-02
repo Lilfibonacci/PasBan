@@ -38,4 +38,10 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get describtion =>
       'همراهِ مورد اعتماد و چندپلتفرمیِ شما، برای احراز هویت دو مرحله‌ایِ امن و بی‌دردسر.';
+
+  @override
+  String get scan => 'اسکن کیو آر کد';
+
+  @override
+  String get snackBar => 'هیچ بارکدی در این عکس پیدا نشد.';
 }
