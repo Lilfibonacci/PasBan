@@ -38,4 +38,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get describtion =>
       'Your trusted, cross-platform companion for secure and effortless two-factor authentication.';
+
+  @override
+  String get scan => 'Scan QR';
+
+  @override
+  String get snackBar => 'No barcodes were found in this image.';
 }
