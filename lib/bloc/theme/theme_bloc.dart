@@ -8,11 +8,13 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   final SharedPreferences preferences;
 
   ThemeBloc(this.preferences) : super(ThemeState(ThemeMode.system)) {
+    //Load theme
     on<LoadThemeEvent>((event, emit) async {
       final isDark = preferences.getBool("darkMood") ?? false;
       emit(ThemeState(isDark ? ThemeMode.dark : ThemeMode.light));
     });
 
+    //Switch Theme
     on<SwitchThemeEvent>((event, emit) async {
       final isCurrentlyDark = state.themeMode == ThemeMode.dark;
       final newTheme = isCurrentlyDark ? ThemeMode.light : ThemeMode.dark;

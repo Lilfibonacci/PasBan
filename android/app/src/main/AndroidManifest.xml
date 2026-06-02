@@ -22,6 +22,8 @@
         </intent>
     </queries>
 
+    <uses-permission android:name="android.permission.CAMERA"/>
+
     <application
         android:label="PasBan"
         android:name="${applicationName}"
