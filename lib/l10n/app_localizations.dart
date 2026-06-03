@@ -169,6 +169,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No barcodes were found in this image.'**
   String get snackBar;
+
+  /// No description provided for @accountMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'No accounts added yet.\nTap the fab button to scan a QR code.'**
+  String get accountMessage;
+
+  /// No description provided for @addAcount.
+  ///
+  /// In en, this message translates to:
+  /// **'add account'**
+  String get addAcount;
+
+  /// No description provided for @addAcountSuccessMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Saved !'**
+  String get addAcountSuccessMessage;
+
+  /// No description provided for @addAcountFailureMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid QR Code!'**
+  String get addAcountFailureMessage;
 }
 
 class _AppLocalizationsDelegate
