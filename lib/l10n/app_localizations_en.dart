@@ -44,4 +44,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get snackBar => 'No barcodes were found in this image.';
+
+  @override
+  String get accountMessage =>
+      'No accounts added yet.\nTap the fab button to scan a QR code.';
+
+  @override
+  String get addAcount => 'add account';
+
+  @override
+  String get addAcountSuccessMessage => 'Account Saved !';
+
+  @override
+  String get addAcountFailureMessage => 'Invalid QR Code!';
 }

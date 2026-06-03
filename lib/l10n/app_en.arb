@@ -10,5 +10,10 @@
   "telegramTile" : "Telegram",
   "describtion" : "Your trusted, cross-platform companion for secure and effortless two-factor authentication.",
   "scan" : "Scan QR",
-  "snackBar" : "No barcodes were found in this image."  
+  "snackBar" : "No barcodes were found in this image.",
+  "accountMessage" : "No accounts added yet.\nTap the fab button to scan a QR code.",
+  "addAcount" : "add account",
+  "addAcountSuccessMessage" : "Account Saved !",
+  "addAcountFailureMessage" : "Invalid QR Code!"
+  
 }

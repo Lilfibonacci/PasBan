@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_authenticator/bloc/account/account_bloc.dart';
+import 'package:flutter_authenticator/bloc/account/account_event.dart';
 import 'package:flutter_authenticator/bloc/localization/localization_bloc.dart';
 import 'package:flutter_authenticator/bloc/localization/localization_event.dart';
 import 'package:flutter_authenticator/bloc/localization/localization_state.dart';
@@ -25,6 +27,11 @@ void main() async {
         BlocProvider(
           create: (context) =>
               LocalizationBloc(locator.get())..add(LoadLocalEvent()),
+        ),
+        // ... سایر پروایدرها مثل ThemeBloc و LocalizationBloc
+        BlocProvider(
+          // بلافاصله بعد از ساخت بلاک، دستور لود شدن اکانت‌ها را می‌دهیم
+          create: (context) => AccountBloc()..add(LoadAccountsEvent()),
         ),
       ],
       child: const MyApp(),

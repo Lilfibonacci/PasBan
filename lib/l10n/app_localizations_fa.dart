@@ -44,4 +44,17 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get snackBar => 'هیچ بارکدی در این عکس پیدا نشد.';
+
+  @override
+  String get accountMessage =>
+      'اکانتی یافت نشد ! برای افزودن اکانت روی دکمه افزودن کلیک کنید';
+
+  @override
+  String get addAcount => 'افزودن';
+
+  @override
+  String get addAcountSuccessMessage => 'اکانت ذخیره شد!';
+
+  @override
+  String get addAcountFailureMessage => 'کیو آر کد نامعتبر !';
 }
