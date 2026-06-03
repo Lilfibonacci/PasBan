@@ -28,9 +28,7 @@ void main() async {
           create: (context) =>
               LocalizationBloc(locator.get())..add(LoadLocalEvent()),
         ),
-        // ... سایر پروایدرها مثل ThemeBloc و LocalizationBloc
         BlocProvider(
-          // بلافاصله بعد از ساخت بلاک، دستور لود شدن اکانت‌ها را می‌دهیم
           create: (context) => AccountBloc()..add(LoadAccountsEvent()),
         ),
       ],

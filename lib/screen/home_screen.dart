@@ -87,13 +87,13 @@ class _HomeScreenState extends State<HomeScreen> {
       // body
       body: BlocBuilder<AccountBloc, AccountState>(
         builder: (context, state) {
-          if (state is AccountLoading) {
+          if (state is AccountLoadingState) {
             return const Center(
               child: SpinKitFoldingCube(color: MyColors.salmon, size: 40.0),
             );
           }
 
-          if (state is AccountLoaded) {
+          if (state is AccountLoadedState) {
             if (state.accounts.isEmpty) {
               return Center(
                 child: Text(
@@ -120,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           }
 
-          if (state is AccountError) {
+          if (state is AccountErrorState) {
             return Center(
               child: Text(
                 state.message,
