@@ -1,20 +1,17 @@
 import 'package:flutter_authenticator/model/otp_model.dart';
 
-abstract class AccountState {}
+sealed class AccountState {}
 
-// حالت اولیه و در حال بارگذاری
-class AccountLoading extends AccountState {}
+class AccountLoadingState extends AccountState {}
 
-// حالتی که اکانت‌ها با موفقیت از دیتابیس خوانده شدند
-class AccountLoaded extends AccountState {
+class AccountLoadedState extends AccountState {
   final List<OtpModel> accounts;
 
-  AccountLoaded({required this.accounts});
+  AccountLoadedState({required this.accounts});
 }
 
-// در صورت بروز خطا
-class AccountError extends AccountState {
+class AccountErrorState extends AccountState {
   final String message;
 
-  AccountError({required this.message});
+  AccountErrorState({required this.message});
 }

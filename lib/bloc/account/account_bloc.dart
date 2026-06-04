@@ -4,19 +4,16 @@ import 'account_event.dart';
 import 'account_state.dart';
 
 class AccountBloc extends Bloc<AccountEvent, AccountState> {
-  AccountBloc() : super(AccountLoading()) {
-    // وقتی رویداد LoadAccountsEvent صدا زده شد، این تابع اجرا می‌شود
+  AccountBloc() : super(AccountLoadingState()) {
     on<LoadAccountsEvent>((event, emit) async {
-      emit(AccountLoading()); // ابتدا وضعیت را روی لودینگ می‌گذاریم
+      emit(AccountLoadingState());
 
       try {
-        // خواندن لیست از دیتابیس امن
         final accounts = await SecureStorageService.getAccounts();
 
-        // فرستادن لیست به صفحه اصلی
-        emit(AccountLoaded(accounts: accounts));
+        emit(AccountLoadedState(accounts: accounts));
       } catch (e) {
-        emit(AccountError(message: "خطا در بارگذاری اطلاعات"));
+        emit(AccountErrorState(message: "خطا در بارگذاری اطلاعات"));
       }
     });
   }
