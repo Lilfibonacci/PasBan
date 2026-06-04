@@ -47,10 +47,10 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get accountMessage =>
-      'اکانتی یافت نشد ! برای افزودن اکانت روی دکمه افزودن کلیک کنید';
+      'اکانتی یافت نشد !\n برای افزودن اکانت روی دکمه افزودن کلیک کنید';
 
   @override
-  String get addAcount => 'افزودن';
+  String get addAcount => 'افزودن اکانت';
 
   @override
   String get addAcountSuccessMessage => 'اکانت ذخیره شد!';

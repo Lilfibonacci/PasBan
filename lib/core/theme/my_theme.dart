@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_authenticator/core/constants/my_colors.dart';
 
-//light theme
+// --- Light Theme ---
 final ThemeData lightTheme = ThemeData(
-  //appBar theme
+  brightness: Brightness.light,
+  scaffoldBackgroundColor: MyColors.white,
+
   appBarTheme: const AppBarTheme(
     backgroundColor: MyColors.white,
     centerTitle: true,
@@ -16,13 +18,6 @@ final ThemeData lightTheme = ThemeData(
     ),
   ),
 
-  //scaffold color
-  scaffoldBackgroundColor: MyColors.white,
-
-  //light mode
-  brightness: Brightness.light,
-
-  //elevatedButton Theme
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       iconColor: MyColors.white,
@@ -33,7 +28,6 @@ final ThemeData lightTheme = ThemeData(
     ),
   ),
 
-  //textTheme
   textTheme: const TextTheme(
     bodyLarge: TextStyle(fontFamily: "Cr", color: MyColors.black, fontSize: 32),
     bodyMedium: TextStyle(
@@ -43,7 +37,6 @@ final ThemeData lightTheme = ThemeData(
     ),
   ),
 
-  //Drawer Theme
   drawerTheme: const DrawerThemeData(
     backgroundColor: MyColors.white,
     elevation: 2,
@@ -51,9 +44,11 @@ final ThemeData lightTheme = ThemeData(
   ),
 );
 
-//dark theme
+// --- Dark Theme ---
 final ThemeData darkTheme = ThemeData(
-  //appBar theme
+  brightness: Brightness.dark,
+  scaffoldBackgroundColor: MyColors.black,
+
   appBarTheme: const AppBarTheme(
     backgroundColor: MyColors.black,
     centerTitle: true,
@@ -66,13 +61,6 @@ final ThemeData darkTheme = ThemeData(
     ),
   ),
 
-  //scaffold color
-  scaffoldBackgroundColor: MyColors.black,
-
-  //Dark mode
-  brightness: Brightness.dark,
-
-  //elevatedButton Theme
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       iconColor: MyColors.white,
@@ -83,7 +71,6 @@ final ThemeData darkTheme = ThemeData(
     ),
   ),
 
-  //textTheme
   textTheme: const TextTheme(
     bodyLarge: TextStyle(fontFamily: "Cr", color: MyColors.white, fontSize: 32),
     bodyMedium: TextStyle(
@@ -93,7 +80,6 @@ final ThemeData darkTheme = ThemeData(
     ),
   ),
 
-  //Drawer Theme
   drawerTheme: const DrawerThemeData(
     backgroundColor: MyColors.black,
     elevation: 2,
