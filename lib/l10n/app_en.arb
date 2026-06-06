@@ -11,9 +11,14 @@
   "describtion" : "Your trusted, cross-platform companion for secure and effortless two-factor authentication.",
   "scan" : "Scan QR",
   "snackBar" : "No barcodes were found in this image.",
-  "accountMessage" : "No accounts added yet.\nTap the fab button to scan a QR code.",
+  "accountMessage" : "No accounts added yet! \nTap the fab button to addAcount.",
   "addAcount" : "add account",
   "addAcountSuccessMessage" : "Account Saved !",
-  "addAcountFailureMessage" : "Invalid QR Code!"
-  
+  "addAcountFailureMessage" : "Invalid QR Code!",
+  "buttomSheetScanTitle" : "Scan a QR Code",
+  "buttomSheetScanSubTitle" : "Use camera to scan code from another screen or scan from gallery",
+  "buttomSheetSetupKeyTitle" : "Enter Setup Key",
+  "buttomSheetSetupKeySubTitle" : "Manually type your account details",
+  "copyText" : "Code copied to clipboard!"
+
 }

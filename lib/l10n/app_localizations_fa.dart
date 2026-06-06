@@ -57,4 +57,21 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get addAcountFailureMessage => 'کیو آر کد نامعتبر !';
+
+  @override
+  String get buttomSheetScanTitle => 'اسکن کیو آر کد';
+
+  @override
+  String get buttomSheetScanSubTitle =>
+      'استفاده از دوربین برای اسکن کیو آر کد از صفحه ای دیگر یا اسکن از گالری';
+
+  @override
+  String get buttomSheetSetupKeyTitle => 'کلید Setup را وارد کنید';
+
+  @override
+  String get buttomSheetSetupKeySubTitle =>
+      'جزئیات حساب خود را به صورت دستی تایپ کنید';
+
+  @override
+  String get copyText => 'کد کپی شد !';
 }

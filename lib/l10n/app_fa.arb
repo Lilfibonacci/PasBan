@@ -14,8 +14,11 @@
   "accountMessage" : "اکانتی یافت نشد !\n برای افزودن اکانت روی دکمه افزودن کلیک کنید",  
   "addAcount" : "افزودن اکانت",
   "addAcountSuccessMessage" : "اکانت ذخیره شد!",
-  "addAcountFailureMessage" : "کیو آر کد نامعتبر !"
-
-
+  "addAcountFailureMessage" : "کیو آر کد نامعتبر !",
+  "buttomSheetScanTitle" : "اسکن کیو آر کد",
+  "buttomSheetScanSubTitle" : "استفاده از دوربین برای اسکن کیو آر کد از صفحه ای دیگر یا اسکن از گالری",
+  "buttomSheetSetupKeyTitle" : "کلید Setup را وارد کنید",
+  "buttomSheetSetupKeySubTitle" : "جزئیات حساب خود را به صورت دستی تایپ کنید",
+  "copyText" : "کد کپی شد !"
 
 }

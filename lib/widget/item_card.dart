@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_authenticator/core/constants/my_colors.dart';
 import 'package:flutter_authenticator/l10n/app_localizations.dart';
 import 'package:flutter_authenticator/model/otp_model.dart';
@@ -75,7 +77,6 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
     if (name.contains('dropbox')) return FontAwesomeIcons.dropbox;
     if (name.contains('slack')) return FontAwesomeIcons.slack;
 
-    // اگر نام سایت در لیست بالا نبود، null برمی‌گرداند تا حرف اول نمایش داده شود
     return null;
   }
 
@@ -83,6 +84,7 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
 
     final cardColor = MyColors.cardColorsList.reversed
         .toList()[widget.index % MyColors.cardColorsList.length]
@@ -123,7 +125,7 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
                       widget.account.issuer,
                       style: textTheme.bodyLarge?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: warningColor,
+                        color: MyColors.white,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -132,23 +134,68 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
                     Text(
                       widget.account.accountName,
                       style: textTheme.bodyMedium?.copyWith(
-                        color: warningColor,
+                        color: MyColors.white,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 12),
 
-                    Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: Text(
-                        formattedCode,
-                        style: textTheme.headlineMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 2.0,
-                          color: warningColor,
+                    Row(
+                      children: [
+                        Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: Text(
+                            formattedCode,
+                            style: textTheme.headlineMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 2.0,
+                              color: MyColors.white,
+                            ),
+                          ),
                         ),
-                      ),
+                        const SizedBox(width: 12),
+
+                        //copy button
+                        Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(8),
+                            onTap: () async {
+                              await Clipboard.setData(
+                                ClipboardData(text: _currentCode),
+                              );
+
+                              if (context.mounted) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      l10n.copyText,
+                                      style: textTheme.bodyMedium?.copyWith(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    backgroundColor: Colors.green.shade600,
+                                    duration: const Duration(seconds: 2),
+                                    behavior: SnackBarBehavior.floating,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                  ),
+                                );
+                              }
+                            },
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Icon(
+                                Icons.copy_rounded,
+                                color: MyColors.white,
+                                size: 24,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -174,7 +221,6 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
                         backgroundColor: Colors.transparent,
                       ),
                     ),
-
                     Center(
                       child: brandIcon != null
                           ? FaIcon(brandIcon, color: Colors.white, size: 24)
