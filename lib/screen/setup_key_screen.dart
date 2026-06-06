@@ -72,12 +72,6 @@ class _SetupScreenState extends State<SetupScreen> {
       if (mounted) {
         context.read<AccountBloc>().add(LoadAccountsEvent());
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Account added successfully!'),
-            backgroundColor: Colors.green,
-          ),
-        );
         Navigator.of(context).pop();
       }
     }
@@ -87,6 +81,7 @@ class _SetupScreenState extends State<SetupScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final textTheme = Theme.of(context).textTheme;
 
     final activeColor = MyColors.salmon;
     final inactiveColor = isDark ? MyColors.white : MyColors.black;
@@ -99,7 +94,7 @@ class _SetupScreenState extends State<SetupScreen> {
           slivers: [
             const SliverToBoxAdapter(child: SizedBox(height: 24)),
 
-            // فیلد Code Name
+            //name field
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(
@@ -130,7 +125,6 @@ class _SetupScreenState extends State<SetupScreen> {
                           ? activeColor
                           : inactiveColor,
                     ),
-                    // بازگرداندن کادرهای دور فیلد
                     border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(24)),
                     ),
@@ -142,16 +136,12 @@ class _SetupScreenState extends State<SetupScreen> {
                       borderSide: BorderSide(color: activeColor, width: 3),
                       borderRadius: const BorderRadius.all(Radius.circular(24)),
                     ),
-                    errorBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.redAccent, width: 3),
-                      borderRadius: BorderRadius.all(Radius.circular(24)),
-                    ),
                   ),
                 ),
               ),
             ),
 
-            // فیلد Secret Key
+            //key field
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(
@@ -182,7 +172,6 @@ class _SetupScreenState extends State<SetupScreen> {
                           ? activeColor
                           : inactiveColor,
                     ),
-                    // بازگرداندن کادرهای دور فیلد
                     border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(24)),
                     ),
@@ -194,16 +183,12 @@ class _SetupScreenState extends State<SetupScreen> {
                       borderSide: BorderSide(color: activeColor, width: 3),
                       borderRadius: const BorderRadius.all(Radius.circular(24)),
                     ),
-                    errorBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.redAccent, width: 3),
-                      borderRadius: BorderRadius.all(Radius.circular(24)),
-                    ),
                   ),
                 ),
               ),
             ),
 
-            // دکمه Add
+            //add button
             SliverFillRemaining(
               hasScrollBody: false,
               child: Align(
@@ -219,13 +204,9 @@ class _SetupScreenState extends State<SetupScreen> {
                       backgroundColor: MyColors.salmon,
                       minimumSize: const Size(double.infinity, 50),
                     ),
-                    child: const Text(
-                      "Add",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                    child: Text(
+                      l10n.addAcount,
+                      style: textTheme.bodyMedium?.copyWith(fontSize: 18),
                     ),
                   ),
                 ),

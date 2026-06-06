@@ -173,7 +173,7 @@ abstract class AppLocalizations {
   /// No description provided for @accountMessage.
   ///
   /// In en, this message translates to:
-  /// **'No accounts added yet.\nTap the fab button to scan a QR code.'**
+  /// **'No accounts added yet! \nTap the fab button to addAcount.'**
   String get accountMessage;
 
   /// No description provided for @addAcount.
@@ -193,6 +193,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Invalid QR Code!'**
   String get addAcountFailureMessage;
+
+  /// No description provided for @buttomSheetScanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan a QR Code'**
+  String get buttomSheetScanTitle;
+
+  /// No description provided for @buttomSheetScanSubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Use camera to scan code from another screen or scan from gallery'**
+  String get buttomSheetScanSubTitle;
+
+  /// No description provided for @buttomSheetSetupKeyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Setup Key'**
+  String get buttomSheetSetupKeyTitle;
+
+  /// No description provided for @buttomSheetSetupKeySubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manually type your account details'**
+  String get buttomSheetSetupKeySubTitle;
+
+  /// No description provided for @copyText.
+  ///
+  /// In en, this message translates to:
+  /// **'Code copied to clipboard!'**
+  String get copyText;
 }
 
 class _AppLocalizationsDelegate

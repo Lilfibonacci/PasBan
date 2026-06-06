@@ -47,7 +47,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get accountMessage =>
-      'No accounts added yet.\nTap the fab button to scan a QR code.';
+      'No accounts added yet! \nTap the fab button to addAcount.';
 
   @override
   String get addAcount => 'add account';
@@ -57,4 +57,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get addAcountFailureMessage => 'Invalid QR Code!';
+
+  @override
+  String get buttomSheetScanTitle => 'Scan a QR Code';
+
+  @override
+  String get buttomSheetScanSubTitle =>
+      'Use camera to scan code from another screen or scan from gallery';
+
+  @override
+  String get buttomSheetSetupKeyTitle => 'Enter Setup Key';
+
+  @override
+  String get buttomSheetSetupKeySubTitle =>
+      'Manually type your account details';
+
+  @override
+  String get copyText => 'Code copied to clipboard!';
 }
