@@ -125,7 +125,7 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
                       widget.account.issuer,
                       style: textTheme.bodyLarge?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: warningColor,
+                        color: MyColors.white,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -134,7 +134,7 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
                     Text(
                       widget.account.accountName,
                       style: textTheme.bodyMedium?.copyWith(
-                        color: warningColor,
+                        color: MyColors.white,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -150,12 +150,13 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
                             style: textTheme.headlineMedium?.copyWith(
                               fontWeight: FontWeight.bold,
                               letterSpacing: 2.0,
-                              color: warningColor,
+                              color: MyColors.white,
                             ),
                           ),
                         ),
                         const SizedBox(width: 12),
 
+                        //copy button
                         Material(
                           color: Colors.transparent,
                           child: InkWell(
@@ -184,11 +185,11 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
                                 );
                               }
                             },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
                               child: Icon(
                                 Icons.copy_rounded,
-                                color: warningColor,
+                                color: MyColors.white,
                                 size: 24,
                               ),
                             ),
