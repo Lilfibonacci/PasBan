@@ -1,8 +1,10 @@
-<a id="english-version"></a>
+<p align="center">
+  <a href="README.md">🇺🇸 English</a> |
+  <a href="README_FA.md">🇮🇷 فارسی</a>
+</p>
 
 # PasBan Authenticator 🛡️
 
-[**🇮🇷  نسخه فارسی (Persian Version)**](#persian-version)
 
 A secure, modern, and open-source Two-Factor Authentication (2FA) application built with Flutter. PasBan generates Time-based One-Time Passwords (TOTP) to protect your online accounts, keeping your data strictly on your device with military-grade encryption.
 
