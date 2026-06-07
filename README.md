@@ -1,8 +1,10 @@
+<a id="english-version"></a>
+
 # PasBan Authenticator 🛡️
 
-A secure, modern, and open-source Two-Factor Authentication (2FA) application built with Flutter. PasBan generates Time-based One-Time Passwords (TOTP) to protect your online accounts, keeping your data strictly on your device with military-grade encryption.
+[**🇮🇷  نسخه فارسی (Persian Version)**](#persian-version)
 
-[**🇮🇷 نسخه فارسی در پایین صفحه (Persian Version Below)**](#نسخه-فارسی-pasban-)
+A secure, modern, and open-source Two-Factor Authentication (2FA) application built with Flutter. PasBan generates Time-based One-Time Passwords (TOTP) to protect your online accounts, keeping your data strictly on your device with military-grade encryption.
 
 ## ✨ Features
 * **QR Code Scanner:** Instantly add accounts by scanning standard 2FA QR codes.
