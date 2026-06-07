@@ -39,7 +39,7 @@ class MyDrawer extends StatelessWidget {
               ),
             ),
             currentAccountPicture: const CircleAvatar(
-              backgroundImage: AssetImage("assets/images/pasban.png"),
+              backgroundImage: AssetImage("assets/images/pasbanlogo.png"),
             ),
             accountName: Padding(
               padding: const EdgeInsets.only(left: 8.0),

@@ -74,4 +74,4 @@ flutter:
 
 flutter_launcher_icons:
   android: "launcher_icon"
-  image_path: "assets/images/pasban.png"
+  image_path: "assets/images/pasbanlogo.png"

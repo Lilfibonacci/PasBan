@@ -152,16 +152,21 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: MyDrawer(textTheme: textTheme, isDark: isDark, l10n: l10n),
 
       //fab
-      floatingActionButton: FloatingActionButton.extended(
-        elevation: 4,
-        backgroundColor: MyColors.salmon,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        onPressed: () => _showAddOptions(context, l10n),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: FloatingActionButton.extended(
+          elevation: 4,
+          backgroundColor: MyColors.salmon,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          onPressed: () => _showAddOptions(context, l10n),
 
-        label: Center(
-          child: Text(
-            l10n.addAcount,
-            style: textTheme.bodyMedium?.copyWith(fontSize: 18),
+          label: Center(
+            child: Text(
+              l10n.addAcount,
+              style: textTheme.bodyMedium?.copyWith(fontSize: 18),
+            ),
           ),
         ),
       ),
@@ -282,10 +287,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
 
-                  child: ItemCardWidget(
-                    index: index,
-                    l10n: l10n,
-                    account: account,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: ItemCardWidget(
+                      index: index,
+                      l10n: l10n,
+                      account: account,
+                    ),
                   ),
                 );
               },

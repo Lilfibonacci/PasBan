@@ -28,20 +28,16 @@ class AboutScreen extends StatelessWidget {
       // body
       body: CustomScrollView(
         slivers: [
-          const SliverToBoxAdapter(child: SizedBox(height: 40)),
-
           // logo
           SliverToBoxAdapter(
             child: Transform.scale(
-              scale: 0.7,
+              scale: 0.5,
               child: const CircleAvatar(
-                radius: 95,
-                backgroundImage: AssetImage("assets/images/pasban.png"),
+                radius: 150,
+                backgroundImage: AssetImage("assets/images/pasbanlogo.png"),
               ),
             ),
           ),
-
-          const SliverToBoxAdapter(child: SizedBox(height: 12)),
 
           // description
           SliverToBoxAdapter(
