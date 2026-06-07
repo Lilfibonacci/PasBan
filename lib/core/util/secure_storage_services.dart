@@ -42,7 +42,6 @@ class SecureStorageService {
       );
 
       await _storage.write(key: _accountsKey, value: encodedData);
-      debugPrint("✅ اکانت با موفقیت در فضای امن گوشی رمزنگاری و ذخیره شد!");
     } catch (e) {
       debugPrint("❌ Error saving account: $e");
     }

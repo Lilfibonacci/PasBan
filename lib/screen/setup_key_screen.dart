@@ -20,7 +20,6 @@ class SetupScreen extends StatefulWidget {
 class _SetupScreenState extends State<SetupScreen> {
   late FocusNode nameFocusNode;
   late FocusNode keyFocusNode;
-
   late TextEditingController nameController;
   late TextEditingController keyController;
 

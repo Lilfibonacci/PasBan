@@ -128,7 +128,13 @@ class MyDrawer extends StatelessWidget {
                   borderRadius: const BorderRadius.all(Radius.circular(16)),
 
                   items: const [
-                    DropdownMenuItem(value: "en", child: Text("English")),
+                    DropdownMenuItem(
+                      value: "en",
+                      child: Text(
+                        "English",
+                        style: TextStyle(fontFamily: 'cr'),
+                      ),
+                    ),
                     DropdownMenuItem(
                       value: "fa",
                       child: Text("فارسی", style: TextStyle(fontFamily: 'cr')),

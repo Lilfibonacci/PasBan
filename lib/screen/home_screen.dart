@@ -172,13 +172,14 @@ class _HomeScreenState extends State<HomeScreen> {
       //body
       body: BlocBuilder<AccountBloc, AccountState>(
         builder: (context, state) {
+          //Loading State
+
           if (state is AccountLoadingState) {
             return const Center(
               child: SpinKitFoldingCube(color: MyColors.salmon, size: 40.0),
             );
           }
 
-          //Loading State
           if (state is AccountLoadedState) {
             if (state.accounts.isEmpty) {
               return Center(
