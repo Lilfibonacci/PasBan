@@ -68,7 +68,7 @@ class AboutScreen extends StatelessWidget {
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 decoration: const BoxDecoration(
-                  color: MyColors.mistyRose,
+                  color: MyColors.salmon,
                   borderRadius: BorderRadius.all(Radius.circular(16)),
                 ),
                 child: Column(
@@ -78,18 +78,18 @@ class AboutScreen extends StatelessWidget {
                     ListTile(
                       leading: FaIcon(
                         FontAwesomeIcons.github,
-                        color: isDark ? MyColors.black : MyColors.white,
+                        color: isDark ? MyColors.white : MyColors.black,
                       ),
                       title: Text(
                         l10n.sourceTile,
                         style: textTheme.bodyMedium?.copyWith(
-                          color: isDark ? MyColors.black : MyColors.white,
+                          color: isDark ? MyColors.white : MyColors.black,
                         ),
                       ),
                       trailing: FaIcon(
                         FontAwesomeIcons.arrowUpRightFromSquare,
                         size: 18,
-                        color: isDark ? MyColors.black : MyColors.white,
+                        color: isDark ? MyColors.white : MyColors.black,
                       ),
                       onTap: () {
                         urlLauncher("https://github.com/Lilfibonacci/PasBan");
@@ -106,18 +106,18 @@ class AboutScreen extends StatelessWidget {
                     ListTile(
                       leading: FaIcon(
                         FontAwesomeIcons.envelope,
-                        color: isDark ? MyColors.black : MyColors.white,
+                        color: isDark ? MyColors.white : MyColors.black,
                       ),
                       title: Text(
                         l10n.emailTile,
                         style: textTheme.bodyMedium?.copyWith(
-                          color: isDark ? MyColors.black : MyColors.white,
+                          color: isDark ? MyColors.white : MyColors.black,
                         ),
                       ),
                       trailing: FaIcon(
                         FontAwesomeIcons.arrowUpRightFromSquare,
                         size: 18,
-                        color: isDark ? MyColors.black : MyColors.white,
+                        color: isDark ? MyColors.white : MyColors.black,
                       ),
                       onTap: () {
                         urlLauncher("mailto:lilfibonacci1@gmail.com");
@@ -134,18 +134,18 @@ class AboutScreen extends StatelessWidget {
                     ListTile(
                       leading: FaIcon(
                         FontAwesomeIcons.telegram,
-                        color: isDark ? MyColors.black : MyColors.white,
+                        color: isDark ? MyColors.white : MyColors.black,
                       ),
                       title: Text(
                         l10n.telegramTile,
                         style: textTheme.bodyMedium?.copyWith(
-                          color: isDark ? MyColors.black : MyColors.white,
+                          color: isDark ? MyColors.white : MyColors.black,
                         ),
                       ),
                       trailing: FaIcon(
                         FontAwesomeIcons.arrowUpRightFromSquare,
                         size: 18,
-                        color: isDark ? MyColors.black : MyColors.white,
+                        color: isDark ? MyColors.white : MyColors.black,
                       ),
                       onTap: () {
                         urlLauncher("https://t.me/Lilfibonacci");

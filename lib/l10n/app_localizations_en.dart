@@ -74,4 +74,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get copyText => 'Code copied to clipboard!';
+
+  @override
+  String get dialogTitle => 'Delete Account?';
+
+  @override
+  String get dialogContent =>
+      'Are you sure you want to remove your account? You will lose access to its 2FA codes permanently.';
+
+  @override
+  String get cancelButton => 'Cancel';
+
+  @override
+  String get deleteButton => 'Delete';
+
+  @override
+  String get deleteSnackBar => 'Your account has been successfully deleted';
 }

@@ -19,6 +19,12 @@
   "buttomSheetScanSubTitle" : "Use camera to scan code from another screen or scan from gallery",
   "buttomSheetSetupKeyTitle" : "Enter Setup Key",
   "buttomSheetSetupKeySubTitle" : "Manually type your account details",
-  "copyText" : "Code copied to clipboard!"
+  "copyText" : "Code copied to clipboard!",
+  "dialogTitle" : "Delete Account?",
+  "dialogContent" : "Are you sure you want to remove your account? You will lose access to its 2FA codes permanently.",
+  "cancelButton" : "Cancel",
+  "deleteButton" : "Delete",
+  "deleteSnackBar" : "Your account has been successfully deleted"
+
 
 }

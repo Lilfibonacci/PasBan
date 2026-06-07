@@ -74,4 +74,20 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get copyText => 'کد کپی شد !';
+
+  @override
+  String get dialogTitle => 'حذف اکانت؟';
+
+  @override
+  String get dialogContent =>
+      'آیا از حذف اکانت خود مطمئن هستید؟ با این کار دسترسی به کدهای ورود دو مرحله‌ای آن را برای همیشه از دست خواهید داد.';
+
+  @override
+  String get cancelButton => 'انصراف';
+
+  @override
+  String get deleteButton => 'حذف';
+
+  @override
+  String get deleteSnackBar => 'اکانت شما با موفقیت حذف شد';
 }

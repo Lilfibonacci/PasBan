@@ -8,6 +8,7 @@ class SecureStorageService {
 
   static const _accountsKey = 'pasban_accounts';
 
+  //load account
   static Future<List<OtpModel>> getAccounts() async {
     try {
       final String? data = await _storage.read(key: _accountsKey);
@@ -23,6 +24,7 @@ class SecureStorageService {
     return [];
   }
 
+  //save account
   static Future<void> saveAccount(OtpModel newAccount) async {
     try {
       final List<OtpModel> currentAccounts = await getAccounts();
@@ -42,9 +44,25 @@ class SecureStorageService {
       );
 
       await _storage.write(key: _accountsKey, value: encodedData);
-      debugPrint("✅ اکانت با موفقیت در فضای امن گوشی رمزنگاری و ذخیره شد!");
     } catch (e) {
       debugPrint("❌ Error saving account: $e");
+    }
+  }
+
+  //delete account
+  static Future<void> deleteAccount(int index) async {
+    try {
+      final List<OtpModel> currentAccounts = await getAccounts();
+
+      currentAccounts.removeAt(index);
+
+      final String encodedData = json.encode(
+        currentAccounts.map((acc) => acc.toMap()).toList(),
+      );
+
+      await _storage.write(key: _accountsKey, value: encodedData);
+    } catch (e) {
+      debugPrint("❌ Error deleting account: $e");
     }
   }
 }

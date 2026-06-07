@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_authenticator/model/otp_model.dart';
 
 OtpModel? parseOtpUri(String uriString) {
@@ -9,13 +8,11 @@ OtpModel? parseOtpUri(String uriString) {
     final uri = Uri.parse(uriString);
 
     if (uri.scheme != 'otpauth' || uri.host != 'totp') {
-      debugPrint("❌ این یک QR Code معتبر برای Authenticator نیست.");
       return null;
     }
 
     final secret = uri.queryParameters['secret'];
     if (secret == null || secret.isEmpty) {
-      debugPrint("❌ کلید مخفی (Secret) در این لینک وجود ندارد.");
       return null;
     }
 
@@ -41,7 +38,6 @@ OtpModel? parseOtpUri(String uriString) {
 
     return OtpModel(secret: secret, issuer: issuer, accountName: accountName);
   } catch (e) {
-    debugPrint("❌ خطا در پردازش لینک: $e");
     return null;
   }
 }
