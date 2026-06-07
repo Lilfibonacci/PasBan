@@ -173,7 +173,6 @@ class _HomeScreenState extends State<HomeScreen> {
       body: BlocBuilder<AccountBloc, AccountState>(
         builder: (context, state) {
           //Loading State
-
           if (state is AccountLoadingState) {
             return const Center(
               child: SpinKitFoldingCube(color: MyColors.salmon, size: 40.0),
@@ -195,10 +194,99 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.only(bottom: 100, top: 8),
               itemCount: state.accounts.length,
               itemBuilder: (context, index) {
-                return ItemCardWidget(
-                  index: index,
-                  l10n: l10n,
-                  account: state.accounts[index],
+                final account = state.accounts[index];
+
+                return Dismissible(
+                  key: ValueKey(account.secret),
+
+                  direction: DismissDirection.endToStart,
+
+                  background: Container(
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 8.0,
+                      vertical: 8.0,
+                    ),
+                    decoration: BoxDecoration(
+                      color: MyColors.tomato,
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    alignment: Alignment.centerRight,
+                    padding: const EdgeInsets.only(right: 24.0),
+                    child: const Icon(
+                      Icons.delete_outline_rounded,
+                      color: Colors.white,
+                      size: 32,
+                    ),
+                  ),
+
+                  //delete dialog
+                  confirmDismiss: (direction) async {
+                    return await showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          title: Text(
+                            l10n.dialogTitle,
+                            style: textTheme.bodyMedium?.copyWith(fontSize: 24),
+                          ),
+                          content: Text(
+                            l10n.dialogContent,
+                            style: textTheme.bodyMedium?.copyWith(fontSize: 18),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.of(context).pop(false),
+                              child: Text(
+                                l10n.cancelButton,
+                                style: textTheme.bodyMedium?.copyWith(
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.of(context).pop(true),
+                              child: Text(
+                                l10n.deleteButton,
+                                style: textTheme.bodyMedium?.copyWith(
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+
+                  //delete event
+                  onDismissed: (direction) {
+                    context.read<AccountBloc>().add(
+                      DeleteAccountEvent(index: index),
+                    );
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          l10n.deleteSnackBar,
+                          style: textTheme.bodyMedium?.copyWith(fontSize: 16),
+                        ),
+                        backgroundColor: MyColors.tomato,
+                        behavior: SnackBarBehavior.floating,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    );
+                  },
+
+                  child: ItemCardWidget(
+                    index: index,
+                    l10n: l10n,
+                    account: account,
+                  ),
                 );
               },
             );

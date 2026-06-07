@@ -223,6 +223,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Code copied to clipboard!'**
   String get copyText;
+
+  /// No description provided for @dialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Account?'**
+  String get dialogTitle;
+
+  /// No description provided for @dialogContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to remove your account? You will lose access to its 2FA codes permanently.'**
+  String get dialogContent;
+
+  /// No description provided for @cancelButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancelButton;
+
+  /// No description provided for @deleteButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get deleteButton;
+
+  /// No description provided for @deleteSnackBar.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account has been successfully deleted'**
+  String get deleteSnackBar;
 }
 
 class _AppLocalizationsDelegate

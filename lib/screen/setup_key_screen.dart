@@ -20,9 +20,10 @@ class SetupScreen extends StatefulWidget {
 class _SetupScreenState extends State<SetupScreen> {
   late FocusNode nameFocusNode;
   late FocusNode keyFocusNode;
+  late FocusNode accountName;
+  late TextEditingController accountNameController;
   late TextEditingController nameController;
   late TextEditingController keyController;
-
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
@@ -31,10 +32,16 @@ class _SetupScreenState extends State<SetupScreen> {
 
     nameController = TextEditingController();
     keyController = TextEditingController();
+    accountNameController = TextEditingController();
+    accountName = FocusNode();
     nameFocusNode = FocusNode();
     keyFocusNode = FocusNode();
 
     nameFocusNode.addListener(() {
+      setState(() {});
+    });
+
+    accountName.addListener(() {
       setState(() {});
     });
 
@@ -55,15 +62,20 @@ class _SetupScreenState extends State<SetupScreen> {
   Future<void> _saveAccount() async {
     if (formKey.currentState!.validate()) {
       final name = nameController.text.trim();
+
       final secret = keyController.text
           .trim()
           .replaceAll(' ', '')
-          .toUpperCase();
+          .toUpperCase()
+          .replaceAll('0', 'O')
+          .replaceAll('1', 'I');
+
+      final accountName = accountNameController.text.trim();
 
       final newAccount = OtpModel(
         secret: secret,
         issuer: name,
-        accountName: '',
+        accountName: accountName,
       );
 
       await SecureStorageService.saveAccount(newAccount);
@@ -84,6 +96,7 @@ class _SetupScreenState extends State<SetupScreen> {
 
     final activeColor = MyColors.salmon;
     final inactiveColor = isDark ? MyColors.white : MyColors.black;
+    final typingTextColor = isDark ? Colors.white : Colors.black;
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.title)),
@@ -103,6 +116,12 @@ class _SetupScreenState extends State<SetupScreen> {
                 child: TextFormField(
                   controller: nameController,
                   focusNode: nameFocusNode,
+                  style: TextStyle(
+                    color: typingTextColor,
+                    fontSize: 18,
+                    fontFamily: "Cr",
+                  ),
+                  cursorColor: activeColor,
                   validator: (value) => value == null || value.isEmpty
                       ? 'Please enter a name'
                       : null,
@@ -116,13 +135,64 @@ class _SetupScreenState extends State<SetupScreen> {
                             : inactiveColor,
                       ),
                     ),
-                    labelText: "Code Name",
+                    labelText: "issuerGithub",
                     labelStyle: TextStyle(
                       fontSize: 18,
                       fontFamily: "Cr",
                       color: nameFocusNode.hasFocus
                           ? activeColor
                           : inactiveColor,
+                    ),
+                    border: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(24)),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: inactiveColor, width: 1.5),
+                      borderRadius: const BorderRadius.all(Radius.circular(24)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: activeColor, width: 3),
+                      borderRadius: const BorderRadius.all(Radius.circular(24)),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            //accountName
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20.0,
+                  vertical: 15,
+                ),
+                child: TextFormField(
+                  controller: accountNameController,
+                  focusNode: accountName,
+                  style: TextStyle(
+                    color: typingTextColor,
+                    fontSize: 18,
+                    fontFamily: "Cr",
+                  ),
+                  cursorColor: activeColor,
+                  validator: (value) => value == null || value.isEmpty
+                      ? 'Please enter a accountName'
+                      : null,
+                  decoration: InputDecoration(
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: FaIcon(
+                        FontAwesomeIcons.code,
+                        color: accountName.hasFocus
+                            ? activeColor
+                            : inactiveColor,
+                      ),
+                    ),
+                    labelText: "account Name",
+                    labelStyle: TextStyle(
+                      fontSize: 18,
+                      fontFamily: "Cr",
+                      color: accountName.hasFocus ? activeColor : inactiveColor,
                     ),
                     border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(24)),
@@ -150,9 +220,22 @@ class _SetupScreenState extends State<SetupScreen> {
                 child: TextFormField(
                   controller: keyController,
                   focusNode: keyFocusNode,
-                  validator: (value) => value == null || value.isEmpty
-                      ? 'Please enter the secret key'
-                      : null,
+                  style: TextStyle(
+                    color: typingTextColor,
+                    fontSize: 18,
+                    fontFamily: "Cr",
+                  ),
+                  cursorColor: activeColor,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter the secret key';
+                    }
+                    final checkStr = value.toUpperCase();
+                    if (checkStr.contains('8') || checkStr.contains('9')) {
+                      return 'Secret keys never contain 8 or 9!';
+                    }
+                    return null;
+                  },
                   decoration: InputDecoration(
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(12.0),
@@ -205,7 +288,10 @@ class _SetupScreenState extends State<SetupScreen> {
                     ),
                     child: Text(
                       l10n.addAcount,
-                      style: textTheme.bodyMedium?.copyWith(fontSize: 18),
+                      style: textTheme.bodyMedium?.copyWith(
+                        fontSize: 18,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),

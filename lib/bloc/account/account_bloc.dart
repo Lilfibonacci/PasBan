@@ -5,6 +5,7 @@ import 'account_state.dart';
 
 class AccountBloc extends Bloc<AccountEvent, AccountState> {
   AccountBloc() : super(AccountLoadingState()) {
+    //load account
     on<LoadAccountsEvent>((event, emit) async {
       emit(AccountLoadingState());
 
@@ -14,6 +15,19 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
         emit(AccountLoadedState(accounts: accounts));
       } catch (e) {
         emit(AccountErrorState(message: "خطا در بارگذاری اطلاعات"));
+      }
+    });
+
+    //delete account
+    on<DeleteAccountEvent>((event, emit) async {
+      try {
+        await SecureStorageService.deleteAccount(event.index);
+
+        final updatedAccounts = await SecureStorageService.getAccounts();
+
+        emit(AccountLoadedState(accounts: updatedAccounts));
+      } catch (e) {
+        emit(AccountErrorState(message: "خطا در حذف اکانت"));
       }
     });
   }

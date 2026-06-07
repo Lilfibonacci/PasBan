@@ -68,7 +68,7 @@ class AboutScreen extends StatelessWidget {
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 decoration: const BoxDecoration(
-                  color: MyColors.mistyRose,
+                  color: MyColors.salmon,
                   borderRadius: BorderRadius.all(Radius.circular(16)),
                 ),
                 child: Column(

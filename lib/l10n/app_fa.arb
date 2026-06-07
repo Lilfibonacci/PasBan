@@ -19,6 +19,11 @@
   "buttomSheetScanSubTitle" : "استفاده از دوربین برای اسکن کیو آر کد از صفحه ای دیگر یا اسکن از گالری",
   "buttomSheetSetupKeyTitle" : "کلید Setup را وارد کنید",
   "buttomSheetSetupKeySubTitle" : "جزئیات حساب خود را به صورت دستی تایپ کنید",
-  "copyText" : "کد کپی شد !"
+  "copyText" : "کد کپی شد !",
+  "dialogTitle" : "حذف اکانت؟",
+  "dialogContent" : "آیا از حذف اکانت خود مطمئن هستید؟ با این کار دسترسی به کدهای ورود دو مرحله‌ای آن را برای همیشه از دست خواهید داد.",
+  "cancelButton" : "انصراف",
+  "deleteButton" : "حذف",
+  "deleteSnackBar" : "اکانت شما با موفقیت حذف شد"
 
 }
