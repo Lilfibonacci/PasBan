@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_authenticator/core/constants/my_colors.dart';
 import 'package:flutter_authenticator/core/util/fa_icon.dart';
 import 'package:flutter_authenticator/l10n/app_localizations.dart';
 import 'package:flutter_authenticator/model/otp_model.dart';
@@ -59,30 +58,37 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final l10n = AppLocalizations.of(context)!;
-
-    final cardColor = MyColors.cardColorsList.reversed
-        .toList()[widget.index % MyColors.cardColorsList.length]
-        .shade400;
-
+    final cardColor = isDark ? const Color(0xFF222224) : Colors.white;
+    final shadowColor = isDark ? Colors.transparent : Colors.black12;
     final formattedCode = _currentCode.length == 6
         ? '${_currentCode.substring(0, 3)} ${_currentCode.substring(3, 6)}'
         : _currentCode;
-
     final progress = _remainingSeconds / 30.0;
     final isExpiring = _remainingSeconds <= 5;
-
-    final sliceColor = isExpiring
-        ? Colors.red.shade900
-        : Colors.white.withValues(alpha: 0.3);
-
+    final textColor = isDark ? Colors.white : Colors.black87;
+    final warningColor = isExpiring ? Colors.redAccent : textColor;
+    final accentColor = isExpiring
+        ? Colors.redAccent
+        : isDark
+        ? Colors.white
+        : Colors.black87;
+    final pieBgColor = isDark ? Colors.white10 : Colors.black12;
     final brandIcon = getBrandIcon(widget.account.issuer);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-      child: Card(
-        color: cardColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      child: Container(
+        decoration: BoxDecoration(
+          color: cardColor,
+          borderRadius: BorderRadius.circular(24),
+          boxShadow: [
+            BoxShadow(
+              color: shadowColor,
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Row(
@@ -95,7 +101,7 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
                       widget.account.issuer,
                       style: textTheme.bodyLarge?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: isDark ? MyColors.white : MyColors.black,
+                        color: warningColor,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -104,7 +110,7 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
                     Text(
                       widget.account.accountName,
                       style: textTheme.bodyMedium?.copyWith(
-                        color: isDark ? MyColors.white : MyColors.black,
+                        color: warningColor.withValues(alpha: 0.7),
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -120,7 +126,7 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
                             style: textTheme.headlineMedium?.copyWith(
                               fontWeight: FontWeight.bold,
                               letterSpacing: 2.0,
-                              color: isDark ? MyColors.white : MyColors.black,
+                              color: warningColor,
                             ),
                           ),
                         ),
@@ -140,7 +146,7 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
-                                      l10n.copyText,
+                                      widget.l10n.copyText,
                                       style: textTheme.bodyMedium?.copyWith(
                                         fontSize: 16,
                                       ),
@@ -159,7 +165,7 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
                               padding: const EdgeInsets.all(8.0),
                               child: Icon(
                                 Icons.copy_rounded,
-                                color: isDark ? MyColors.white : MyColors.black,
+                                color: warningColor.withValues(alpha: 0.6),
                                 size: 24,
                               ),
                             ),
@@ -177,29 +183,34 @@ class _ItemCardWidgetState extends State<ItemCardWidget> {
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
+                    //circlur backGround
                     Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.black.withValues(alpha: 0.1),
+                        color: pieBgColor,
                       ),
                     ),
+
+                    //indicator
                     ClipOval(
                       child: CircularProgressIndicator(
                         value: progress,
                         strokeWidth: 50,
-                        color: sliceColor,
+                        color: accentColor.withValues(alpha: 0.25),
                         backgroundColor: Colors.transparent,
                       ),
                     ),
+
+                    //icon
                     Center(
                       child: brandIcon != null
-                          ? FaIcon(brandIcon, color: Colors.white, size: 24)
+                          ? FaIcon(brandIcon, color: accentColor, size: 24)
                           : Text(
                               widget.account.issuer.isNotEmpty
                                   ? widget.account.issuer[0].toUpperCase()
                                   : '?',
-                              style: const TextStyle(
-                                color: Colors.white,
+                              style: TextStyle(
+                                color: accentColor,
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold,
                               ),
