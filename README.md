@@ -10,6 +10,7 @@ A secure, modern, and open-source Two-Factor Authentication (2FA) application bu
 ## ✨ Features
 
 * **QR Code Scanner:** Instantly add accounts by scanning standard 2FA QR codes.
+ 
 * **Manual Entry:** Support for adding accounts via secret setup keys with built-in smart input correction.
 * **Biometric Locking (Local Auth):** Secure app access using device-native Biometric Authentication (Fingerprint / Face ID) to prevent unauthorized access.
 * **Dynamic 30-Second TOTP Generation:** Real-time 6-digit code generation that automatically regenerates every 30 seconds, paired with an intuitive, animated pie-chart countdown timer.
@@ -23,12 +24,14 @@ A secure, modern, and open-source Two-Factor Authentication (2FA) application bu
 ## 🛠️ Tech Stack & Architecture
 
 * **Framework:** Flutter / Dart
+
 * **Architecture:** Clean Architecture (Data, Domain, Presentation layers)
 * **State Management:** BLoC (Business Logic Component)
 * **Routing:** GoRouter
 
 ### Key Packages
 * `flutter_secure_storage`: For hardware-encrypted local key storage.
+
 * `local_auth`: For system-level biometric integration (Fingerprint, Face ID, Passcode).
 * `mobile_scanner`: For fast and reliable QR code camera detection.
 * `otp`: For RFC 6238 standard TOTP algorithm implementation.
