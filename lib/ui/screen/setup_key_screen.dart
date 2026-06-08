@@ -288,10 +288,7 @@ class _SetupScreenState extends State<SetupScreen> {
                     ),
                     child: Text(
                       l10n.addAcount,
-                      style: textTheme.bodyMedium?.copyWith(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
+                      style: textTheme.bodyMedium?.copyWith(fontSize: 18),
                     ),
                   ),
                 ),
