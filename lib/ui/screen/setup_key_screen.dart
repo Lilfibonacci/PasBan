@@ -135,7 +135,7 @@ class _SetupScreenState extends State<SetupScreen> {
                             : inactiveColor,
                       ),
                     ),
-                    labelText: "issuerGithub",
+                    labelText: "issuer",
                     labelStyle: TextStyle(
                       fontSize: 18,
                       fontFamily: "Cr",

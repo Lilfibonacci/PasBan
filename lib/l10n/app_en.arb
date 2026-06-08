@@ -24,7 +24,9 @@
   "dialogContent" : "Are you sure you want to remove your account? You will lose access to its 2FA codes permanently.",
   "cancelButton" : "Cancel",
   "deleteButton" : "Delete",
-  "deleteSnackBar" : "Your account has been successfully deleted"
+  "deleteSnackBar" : "Your account has been successfully deleted",
+  "unlockAppbutton" : "Unlock App"
+
 
 
 }
