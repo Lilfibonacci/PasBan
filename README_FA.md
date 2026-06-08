@@ -23,7 +23,6 @@
 ## 🛠️ تکنولوژی‌ها و معماری
 
 * **فریم‌ورک:** فلاتر (Flutter / Dart)
-* **معماری:** معماری پاک (Clean Architecture) شامل لایه‌های Data، Domain و Presentation
 * **مدیریت وضعیت (State Management):** الگوی BLoC (Business Logic Component)
 * **مسیریابی:** پکیج GoRouter
 
@@ -57,11 +56,11 @@ $ flutter run
 ## 🤝 مشارکت
 مشارکت شما باعث افتخار ماست! اگر ایده‌ای برای بهبود پروژه دارید:
 
-۱. پروژه را Fork کنید.
-۲. برنچ مخصوص قابلیت خود را بسازید (git checkout -b feature/NewFeature)
-۳. تغییرات خود را Commit کنید (git commit -m "Add NewFeature")
-۴. برنچ را Push کنید (git push origin feature/NewFeature)
-۵. یک Pull Request ثبت کنید.
+* ۱. پروژه را Fork کنید.
+* ۲. برنچ مخصوص قابلیت خود را بسازید (git checkout -b feature/NewFeature)
+* ۳. تغییرات خود را Commit کنید (git commit -m "Add NewFeature")
+* ۴. برنچ را Push کنید (git push origin feature/NewFeature)
+* ۵. یک Pull Request ثبت کنید.
 
 ## 📄 لایسنس
 این پروژه تحت لایسنس MIT منتشر شده است و استفاده از کدهای آن کاملاً آزاد است. برای اطلاعات بیشتر فایل LICENSE را مطالعه کنید.
