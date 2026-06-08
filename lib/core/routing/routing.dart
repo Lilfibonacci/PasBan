@@ -1,8 +1,8 @@
-import 'package:flutter_authenticator/screen/about_screen.dart';
-import 'package:flutter_authenticator/screen/home_screen.dart';
-import 'package:flutter_authenticator/screen/loading_screen.dart';
-import 'package:flutter_authenticator/screen/scanner_screen.dart';
-import 'package:flutter_authenticator/screen/setup_key_screen.dart';
+import 'package:flutter_authenticator/ui/screen/about_screen.dart';
+import 'package:flutter_authenticator/ui/screen/home_screen.dart';
+import 'package:flutter_authenticator/ui/screen/loading_screen.dart';
+import 'package:flutter_authenticator/ui/screen/scanner_screen.dart';
+import 'package:flutter_authenticator/ui/screen/setup_key_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter appGlobalRouter = GoRouter(

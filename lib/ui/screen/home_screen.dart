@@ -6,10 +6,10 @@ import 'package:flutter_authenticator/core/constants/my_colors.dart';
 import 'package:flutter_authenticator/core/util/otp_parser.dart';
 import 'package:flutter_authenticator/core/util/secure_storage_services.dart';
 import 'package:flutter_authenticator/l10n/app_localizations.dart';
-import 'package:flutter_authenticator/screen/scanner_screen.dart';
-import 'package:flutter_authenticator/screen/setup_key_screen.dart';
-import 'package:flutter_authenticator/widget/custom_drawer.dart';
-import 'package:flutter_authenticator/widget/item_card.dart';
+import 'package:flutter_authenticator/ui/screen/scanner_screen.dart';
+import 'package:flutter_authenticator/ui/screen/setup_key_screen.dart';
+import 'package:flutter_authenticator/ui/widget/custom_drawer.dart';
+import 'package:flutter_authenticator/ui/widget/item_card.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
@@ -180,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
           //Loading State
           if (state is AccountLoadingState) {
             return const Center(
-              child: SpinKitFoldingCube(color: MyColors.salmon, size: 40.0),
+              child: SpinKitWave(color: MyColors.salmon, size: 40.0),
             );
           }
 

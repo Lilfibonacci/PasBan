@@ -90,4 +90,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deleteSnackBar => 'Your account has been successfully deleted';
+
+  @override
+  String get unlockAppbutton => 'Unlock App';
 }

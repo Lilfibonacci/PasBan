@@ -6,9 +6,10 @@ import 'package:flutter_authenticator/bloc/theme/theme_bloc.dart';
 import 'package:flutter_authenticator/bloc/theme/theme_event.dart';
 import 'package:flutter_authenticator/core/constants/my_colors.dart';
 import 'package:flutter_authenticator/l10n/app_localizations.dart';
-import 'package:flutter_authenticator/screen/about_screen.dart';
-import 'package:flutter_authenticator/widget/custom_switch.dart';
-import 'package:flutter_authenticator/widget/drawer_tile.dart';
+import 'package:flutter_authenticator/ui/screen/about_screen.dart';
+import 'package:flutter_authenticator/ui/widget/custom_switch.dart';
+import 'package:flutter_authenticator/ui/widget/drawer_tile.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 

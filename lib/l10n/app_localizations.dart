@@ -253,6 +253,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your account has been successfully deleted'**
   String get deleteSnackBar;
+
+  /// No description provided for @unlockAppbutton.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock App'**
+  String get unlockAppbutton;
 }
 
 class _AppLocalizationsDelegate

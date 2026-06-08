@@ -90,4 +90,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get deleteSnackBar => 'اکانت شما با موفقیت حذف شد';
+
+  @override
+  String get unlockAppbutton => 'باز کردن برنامه';
 }
