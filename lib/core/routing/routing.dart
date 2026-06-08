@@ -1,6 +1,7 @@
 import 'package:flutter_authenticator/ui/screen/about_screen.dart';
 import 'package:flutter_authenticator/ui/screen/home_screen.dart';
 import 'package:flutter_authenticator/ui/screen/loading_screen.dart';
+import 'package:flutter_authenticator/ui/screen/onboarding_screen.dart';
 import 'package:flutter_authenticator/ui/screen/scanner_screen.dart';
 import 'package:flutter_authenticator/ui/screen/setup_key_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -42,6 +43,13 @@ final GoRouter appGlobalRouter = GoRouter(
       path: "/setupScreen",
       name: SetupScreen.routeName,
       builder: (context, state) => const SetupScreen(),
+    ),
+
+    //onboardingScreen
+    GoRoute(
+      path: "/onboardingScreen",
+      name: OnboardingScreen.routeName,
+      builder: (context, state) => const OnboardingScreen(),
     ),
 
     // GoRoute(

@@ -259,6 +259,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unlock App'**
   String get unlockAppbutton;
+
+  /// No description provided for @skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @getStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get getStarted;
+
+  /// No description provided for @obSecurityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'High-Level Security'**
+  String get obSecurityTitle;
+
+  /// No description provided for @obSecurityDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'All your secret keys are hardware-backed and strictly encrypted, staying safely on your own device.'**
+  String get obSecurityDesc;
+
+  /// No description provided for @obOfflineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'100% Offline by Design'**
+  String get obOfflineTitle;
+
+  /// No description provided for @obOfflineDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'PasBan requires zero network permissions. Your security keys will never touch cloud databases.'**
+  String get obOfflineDesc;
+
+  /// No description provided for @obBiometricTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Biometric Lock'**
+  String get obBiometricTitle;
+
+  /// No description provided for @obBiometricDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Protect your authentication codes from unauthorized access using device-native Fingerprint or Face ID.'**
+  String get obBiometricDesc;
 }
 
 class _AppLocalizationsDelegate

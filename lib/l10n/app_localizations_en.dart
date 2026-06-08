@@ -93,4 +93,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unlockAppbutton => 'Unlock App';
+
+  @override
+  String get skip => 'Skip';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get getStarted => 'Get Started';
+
+  @override
+  String get obSecurityTitle => 'High-Level Security';
+
+  @override
+  String get obSecurityDesc =>
+      'All your secret keys are hardware-backed and strictly encrypted, staying safely on your own device.';
+
+  @override
+  String get obOfflineTitle => '100% Offline by Design';
+
+  @override
+  String get obOfflineDesc =>
+      'PasBan requires zero network permissions. Your security keys will never touch cloud databases.';
+
+  @override
+  String get obBiometricTitle => 'Smart Biometric Lock';
+
+  @override
+  String get obBiometricDesc =>
+      'Protect your authentication codes from unauthorized access using device-native Fingerprint or Face ID.';
 }

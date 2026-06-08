@@ -93,4 +93,34 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get unlockAppbutton => 'باز کردن برنامه';
+
+  @override
+  String get skip => 'رد کردن';
+
+  @override
+  String get next => 'بعدی';
+
+  @override
+  String get getStarted => 'شروع کنیم';
+
+  @override
+  String get obSecurityTitle => 'امنیت در سطح بالا';
+
+  @override
+  String get obSecurityDesc =>
+      'تمامی کلیدهای مخفی شما به صورت سخت‌افزاری و کاملاً رمزنگاری‌شده در دستگاه خودتان ذخیره می‌شوند.';
+
+  @override
+  String get obOfflineTitle => '۱۰۰٪ آفلاین و بدون نیاز به اینترنت';
+
+  @override
+  String get obOfflineDesc =>
+      'پاس‌بان هیچ دسترسی به شبکه ندارد؛ رمزهای شما هرگز پایگاه داده‌های ابری را لمس نخواهند کرد.';
+
+  @override
+  String get obBiometricTitle => 'قفل هوشمند بیومتریک';
+
+  @override
+  String get obBiometricDesc =>
+      'با اثر انگشت یا تشخیص چهره، سد محکمی در برابر دسترسی‌های غیرمجاز به کدهای خود بسازید.';
 }
