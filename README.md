@@ -5,29 +5,37 @@
 
 # PasBan Authenticator 🛡️
 
-
 A secure, modern, and open-source Two-Factor Authentication (2FA) application built with Flutter. PasBan generates Time-based One-Time Passwords (TOTP) to protect your online accounts, keeping your data strictly on your device with military-grade encryption.
 
 ## ✨ Features
+
 * **QR Code Scanner:** Instantly add accounts by scanning standard 2FA QR codes.
-* **Manual Entry:** Support for adding accounts via secret setup keys.
-* **Secure Storage:** All accounts and secret keys are encrypted and stored safely using device-native keystores (Keychain for iOS, Keystore for Android).
-* **Live TOTP Generation:** Real-time 6-digit code generation with a beautiful, animated pie-chart timer.
-* **One-Tap Copy:** Quickly copy codes to your clipboard with a seamless UI/UX.
-* **Dark/Light Mode:** Full support for system-wide themes.
-* **Offline by Design:** The app requires zero internet permissions, ensuring your keys never leave your device.
+* **Manual Entry:** Support for adding accounts via secret setup keys with built-in smart input correction.
+* **Biometric Locking (Local Auth):** Secure app access using device-native Biometric Authentication (Fingerprint / Face ID) to prevent unauthorized access.
+* **Dynamic 30-Second TOTP Generation:** Real-time 6-digit code generation that automatically regenerates every 30 seconds, paired with an intuitive, animated pie-chart countdown timer.
+* **Multi-language Support:** Seamless localization supporting both English and Persian (RTL) layouts.
+* **Theme Management:** Full support for custom Dark Mode, Light Mode, and System Theme preferences.
+* **Secure Storage:** All accounts and secret keys are encrypted and safely stored using hardware-backed keystores (Keychain for iOS, Keystore for Android).
+* **One-Tap Copy:** Quickly copy codes to your clipboard with a fluid, seamless UI/UX.
+* **Account Management:** Easily remove accounts with a smooth "Swipe to Delete" gesture, complete with a destructive action confirmation dialog.
+* **Offline by Design:** The app requires zero internet permissions, ensuring your cryptographic keys never leave your device.
 
 ## 🛠️ Tech Stack & Architecture
+
 * **Framework:** Flutter / Dart
-* **Architecture:** Clean Architecture
+* **Architecture:** Clean Architecture (Data, Domain, Presentation layers)
 * **State Management:** BLoC (Business Logic Component)
 * **Routing:** GoRouter
-* **Key Packages:**
-  * `flutter_secure_storage`: For encrypted local storage.
-  * `mobile_scanner`: For fast and reliable QR code detection.
-  * `otp`: For standard TOTP algorithm implementation.
+
+### Key Packages
+* `flutter_secure_storage`: For hardware-encrypted local key storage.
+* `local_auth`: For system-level biometric integration (Fingerprint, Face ID, Passcode).
+* `mobile_scanner`: For fast and reliable QR code camera detection.
+* `otp`: For RFC 6238 standard TOTP algorithm implementation.
+* `flutter_bloc`: For clean, predictable state handling.
 
 ## 🚀 Getting Started
+
 To clone and run this application, you'll need Git and Flutter installed on your computer.
 
 ```bash
