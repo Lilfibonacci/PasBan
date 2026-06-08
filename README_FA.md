@@ -32,7 +32,15 @@
 * `mobile_scanner`: برای اسکن سریع، هوشمند و دقیق دوربین.
 * `otp`: برای پیاده‌سازی الگوریتم استاندارد جهانی کدهای یک‌بارمصرف زمان‌دار (RFC 6238).
 * `flutter_bloc`: برای مدیریت تمیز و پیش‌بینی‌پذیر وضعیت‌های مختلف برنامه.
+* 
+ ## 📸 اسکرین شات
+<img width="172" height="360" alt="Screenshot 2026-06-08 195938" src="https://github.com/user-attachments/assets/2bd5ffac-ad13-45a8-b972-b8a3ce8fefc6" />
+ <img width="172" height="360" alt="Screenshot 2026-06-08 200003" src="https://github.com/user-attachments/assets/f31d9944-6c29-4dfd-8fe9-7c1fe1a08c67" />
+<img width="172" height="360" alt="Screenshot 2026-06-08 200029" src="https://github.com/user-attachments/assets/3ba7ba5d-a79f-402c-aa27-44a1c861d488" />
+<img width="172" height="360" alt="Screenshot 2026-06-08 200152" src="https://github.com/user-attachments/assets/bd0ac9c8-c573-4979-b5e0-386cd91955db" />
+<img width="172" height="360" alt="Screenshot 2026-06-08 200242" src="https://github.com/user-attachments/assets/b66a89e7-3277-4059-9174-8089fd4011da" />
 
+---
 ## 🚀 راه‌اندازی پروژه
 
 برای کلون کردن و اجرای این پروژه روی سیستم خود، نیاز دارید که Git و Flutter روی کامپیوتر شما نصب باشند.
