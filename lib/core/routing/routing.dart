@@ -43,5 +43,11 @@ final GoRouter appGlobalRouter = GoRouter(
       name: SetupScreen.routeName,
       builder: (context, state) => const SetupScreen(),
     ),
+
+    // GoRoute(
+    //   path: "/screenshots",
+    //   name: "screenshots",
+    //   builder: (context, state) => const MarketScreenshotsViewer(),
+    // ),
   ],
 );
