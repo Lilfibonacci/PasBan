@@ -5,35 +5,34 @@
 
 # PasBan Authenticator 🛡️
 
-A secure, modern, and open-source Two-Factor Authentication (2FA) application built with Flutter. PasBan generates Time-based One-Time Passwords (TOTP) to protect your online accounts, keeping your data strictly on your device with military-grade encryption.
+A secure, modern, and open-source Two-Factor Authentication (2FA) application built with Flutter. Available for **Mobile** and as a lightweight **Chrome Extension**. PasBan generates Time-based One-Time Passwords (TOTP) to protect your online accounts, keeping your data strictly on your device with military-grade encryption.
 
 ## ✨ Features
 
-* **QR Code Scanner:** Instantly add accounts by scanning standard 2FA QR codes.
- 
+* **Cross-Platform:** Run it securely as a standalone mobile app or a convenient, offline Chrome Extension right in your browser.
+* **QR Code Scanner & Image Upload:** Instantly add accounts by scanning standard 2FA QR codes via your camera (Mobile) or by uploading QR screenshots directly from your system (Web/Extension).
 * **Manual Entry:** Support for adding accounts via secret setup keys with built-in smart input correction.
 * **Biometric Locking (Local Auth):** Secure app access using device-native Biometric Authentication (Fingerprint / Face ID) to prevent unauthorized access.
 * **Dynamic 30-Second TOTP Generation:** Real-time 6-digit code generation that automatically regenerates every 30 seconds, paired with an intuitive, animated pie-chart countdown timer.
 * **Multi-language Support:** Seamless localization supporting both English and Persian (RTL) layouts.
 * **Theme Management:** Full support for custom Dark Mode, Light Mode, and System Theme preferences.
-* **Secure Storage:** All accounts and secret keys are encrypted and safely stored using hardware-backed keystores (Keychain for iOS, Keystore for Android).
+* **Secure Storage:** All accounts and secret keys are encrypted and safely stored using hardware-backed keystores.
 * **One-Tap Copy:** Quickly copy codes to your clipboard with a fluid, seamless UI/UX.
 * **Account Management:** Easily remove accounts with a smooth "Swipe to Delete" gesture, complete with a destructive action confirmation dialog.
-* **Offline by Design:** The app requires zero internet permissions, ensuring your cryptographic keys never leave your device.
+* **100% Offline by Design:** The app requires zero internet permissions. Even the Chrome Extension is fully offline, ensuring your cryptographic keys never leave your device.
 
 ## 🛠️ Tech Stack & Architecture
 
 * **Framework:** Flutter / Dart
-
 * **Architecture:** Clean Architecture (Data, Domain, Presentation layers)
 * **State Management:** BLoC (Business Logic Component)
 * **Routing:** GoRouter
 
 ### Key Packages
 * `flutter_secure_storage`: For hardware-encrypted local key storage.
-
-* `local_auth`: For system-level biometric integration (Fingerprint, Face ID, Passcode).
+* `local_auth`: For system-level biometric integration.
 * `mobile_scanner`: For fast and reliable QR code camera detection.
+* `image_picker`: For selecting QR screenshots from the gallery or desktop file system.
 * `otp`: For RFC 6238 standard TOTP algorithm implementation.
 * `flutter_bloc`: For clean, predictable state handling.
 
@@ -60,11 +59,34 @@ $ cd PasBan
 # Install dependencies
 $ flutter pub get
 
-# Run the app
-$ flutter run
 ```
+
+## 📱 Running on Mobile
+
+```bash
+$ flutter run
+
+```
+
+## 🧩 Building the Chrome Extension
+PasBan can be compiled into a secure, offline Manifest V3 Chrome Extension.
+
+```
+# Build the web version with Content Security Policy (CSP) enabled
+$ flutter build web --csp
+
+```
+
+To install the extension manually:
+
+Open Chrome and navigate to chrome://extensions/.
+
+Enable Developer mode in the top right corner.
+
+Click Load unpacked and select the build/web folder inside your project.
+
 ## 📥 Download
-You can download the latest release (APK) directly from the Releases page.
+You can download the latest release (APK & Chrome Extension ZIP) directly from the Releases page.
 
 ## 🤝 Contributing
 Contributions are always welcome!
