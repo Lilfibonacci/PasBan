@@ -32,6 +32,8 @@ dependencies:
   otp: ^3.2.0
   flutter_launcher_icons: ^0.14.4
   local_auth: ^3.0.1
+  qr_code_vision: ^0.1.2
+  image: ^4.8.0
 
 dev_dependencies:
   flutter_test:

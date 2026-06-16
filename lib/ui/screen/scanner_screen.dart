@@ -1,8 +1,11 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_authenticator/core/constants/my_colors.dart';
 import 'package:flutter_authenticator/l10n/app_localizations.dart';
+import 'package:image/image.dart' as img;
 import 'package:image_picker/image_picker.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:qr_code_vision/qr_code_vision.dart';
 
 class ScannerScreen extends StatefulWidget {
   const ScannerScreen({super.key});
@@ -14,9 +17,16 @@ class ScannerScreen extends StatefulWidget {
 }
 
 class _ScannerScreenState extends State<ScannerScreen> {
-  final MobileScannerController cameraController = MobileScannerController();
+  late final MobileScannerController cameraController;
   bool isScanned = false;
   final ImagePicker _picker = ImagePicker();
+
+  @override
+  void initState() {
+    super.initState();
+    // 💡 جلوگیری از روشن شدن و درخواست مجوز وب‌کم در اکستنشن کروم
+    cameraController = MobileScannerController(autoStart: !kIsWeb);
+  }
 
   @override
   void dispose() {
@@ -24,32 +34,56 @@ class _ScannerScreenState extends State<ScannerScreen> {
     super.dispose();
   }
 
-  //method for scan image from gallery
+  // متد استخراج بارکد از عکس (مشترک برای موبایل و وب)
   Future<void> _scanFromGallery(
     BuildContext context,
     AppLocalizations l10n,
   ) async {
     try {
       final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-
       if (image == null) return;
 
-      final BarcodeCapture? capture = await cameraController.analyzeImage(
-        image.path,
-      );
+      String? extractedCode;
 
-      if (capture != null && capture.barcodes.isNotEmpty) {
-        for (final barcode in capture.barcodes) {
-          if (barcode.rawValue != null && !isScanned) {
-            isScanned = true;
-            final String code = barcode.rawValue!;
-            debugPrint('📸 بارکد از گالری خوانده شد: $code');
+      if (kIsWeb) {
+        //  پردازش ۱۰۰٪ آفلاین و Pure Dart برای اکستنشن کروم
+        final bytes = await image.readAsBytes();
+        final decodedImage = img.decodeImage(bytes);
 
-            if (context.mounted) {
-              Navigator.of(context).pop(code);
+        if (decodedImage != null) {
+          final qrCode = QrCode();
+
+          qrCode.scanRgbaBytes(
+            decodedImage.getBytes(),
+            decodedImage.width,
+            decodedImage.height,
+          );
+
+          extractedCode = qrCode.content?.text;
+        }
+      } else {
+        //  پردازش بومی مخصوص موبایل با سرعت بالای ML Kit
+        final BarcodeCapture? capture = await cameraController.analyzeImage(
+          image.path,
+        );
+
+        if (capture != null && capture.barcodes.isNotEmpty) {
+          for (final barcode in capture.barcodes) {
+            if (barcode.rawValue != null) {
+              extractedCode = barcode.rawValue;
+              break;
             }
-            break;
           }
+        }
+      }
+
+      // بررسی نتیجه نهایی
+      if (extractedCode != null && !isScanned) {
+        isScanned = true;
+        debugPrint('📸 بارکد استخراج شد: $extractedCode');
+
+        if (context.mounted) {
+          Navigator.of(context).pop(extractedCode);
         }
       } else {
         if (context.mounted) {
@@ -63,7 +97,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
         }
       }
     } catch (e) {
-      debugPrint('Error scanning gallery image: $e');
+      debugPrint('Error scanning image: $e');
     }
   }
 
@@ -71,10 +105,113 @@ class _ScannerScreenState extends State<ScannerScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
+    if (kIsWeb) {
+      return _buildWebUI(context, l10n, isDarkMode);
+    } else {
+      return _buildMobileUI(context, l10n);
+    }
+  }
+
+
+  Widget _buildWebUI(
+    BuildContext context,
+    AppLocalizations l10n,
+    bool isDarkMode,
+  ) {
+    final textColor = isDarkMode ? Colors.white : Colors.black87;
+    final subTextColor = isDarkMode
+        ? Colors.grey.shade400
+        : Colors.grey.shade700;
+
+    return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.close, color: textColor),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 120,
+                height: 120,
+                decoration: BoxDecoration(
+                  color: MyColors.salmon.withValues(alpha: 0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.qr_code_2,
+                  size: 64,
+                  color: MyColors.salmon,
+                ),
+              ),
+              const SizedBox(height: 32),
+              Text(
+                l10n.webScanTitle,
+                style: TextStyle(
+                  color: textColor,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "Cr",
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                l10n.webScanSubTitle,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: subTextColor,
+                  fontSize: 14,
+                  fontFamily: "Cr",
+                  height: 1.5,
+                ),
+              ),
+              const SizedBox(height: 48),
+              SizedBox(
+                width: double.infinity,
+                height: 54,
+                child: ElevatedButton.icon(
+                  onPressed: () => _scanFromGallery(context, l10n),
+                  icon: const Icon(Icons.upload_file),
+                  label: Text(
+                    l10n.webScanTitleButton,
+                    style: const TextStyle(
+                      fontFamily: "Cr",
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: MyColors.salmon,
+                    foregroundColor: Colors
+                        .white, 
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+
+  Widget _buildMobileUI(BuildContext context, AppLocalizations l10n) {
     final scanWindowSize = MediaQuery.of(context).size.width * 0.75;
 
     return Scaffold(
-      backgroundColor: MyColors.black,
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -97,7 +234,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
               }
             },
           ),
-
           ColorFiltered(
             colorFilter: ColorFilter.mode(
               Colors.black.withValues(alpha: 0.7),
@@ -125,7 +261,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
               ],
             ),
           ),
-
           Center(
             child: Container(
               height: scanWindowSize,
@@ -136,7 +271,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
               ),
             ),
           ),
-
           Positioned(
             top: 50,
             left: 16,
@@ -145,7 +279,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
               onPressed: () => Navigator.of(context).pop(),
             ),
           ),
-
           Positioned(
             bottom: 60,
             left: 0,
@@ -167,6 +300,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
                   ),
                 ),
                 const SizedBox(width: 40),
+                // Flashlight Button
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white.withValues(alpha: 0.2),

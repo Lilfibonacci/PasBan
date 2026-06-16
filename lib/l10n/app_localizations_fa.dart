@@ -123,4 +123,14 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get obBiometricDesc =>
       'با اثر انگشت یا تشخیص چهره، سد محکمی در برابر دسترسی‌های غیرمجاز به کدهای خود بسازید.';
+
+  @override
+  String get webScanTitle => 'اسکن با تصویر';
+
+  @override
+  String get webScanSubTitle =>
+      'یک اسکرین شات از  QR Code بگیرید و آن را اینجا آپلود کنید';
+
+  @override
+  String get webScanTitleButton => 'انتخاب عکس از سیستم';
 }

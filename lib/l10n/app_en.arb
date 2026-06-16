@@ -34,7 +34,11 @@
   "obOfflineTitle": "100% Offline by Design",
   "obOfflineDesc": "PasBan requires zero network permissions. Your security keys will never touch cloud databases.",
   "obBiometricTitle": "Smart Biometric Lock",
-  "obBiometricDesc": "Protect your authentication codes from unauthorized access using device-native Fingerprint or Face ID."
+  "obBiometricDesc": "Protect your authentication codes from unauthorized access using device-native Fingerprint or Face ID.",
+  "webScanTitle": "scan with image",
+  "webScanSubTitle": "upload screenShot from QR Code here!",
+  "webScanTitleButton": "choose image from system"
+
 
 
 
