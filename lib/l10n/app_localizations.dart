@@ -313,6 +313,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Protect your authentication codes from unauthorized access using device-native Fingerprint or Face ID.'**
   String get obBiometricDesc;
+
+  /// No description provided for @webScanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'scan with image'**
+  String get webScanTitle;
+
+  /// No description provided for @webScanSubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'upload screenShot from QR Code here!'**
+  String get webScanSubTitle;
+
+  /// No description provided for @webScanTitleButton.
+  ///
+  /// In en, this message translates to:
+  /// **'choose image from system'**
+  String get webScanTitleButton;
 }
 
 class _AppLocalizationsDelegate

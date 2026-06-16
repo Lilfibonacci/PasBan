@@ -123,4 +123,13 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get obBiometricDesc =>
       'Protect your authentication codes from unauthorized access using device-native Fingerprint or Face ID.';
+
+  @override
+  String get webScanTitle => 'scan with image';
+
+  @override
+  String get webScanSubTitle => 'upload screenShot from QR Code here!';
+
+  @override
+  String get webScanTitleButton => 'choose image from system';
 }
